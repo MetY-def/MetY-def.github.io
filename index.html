@@ -19,7 +19,7 @@
       --sidebar-w: 260px;
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * { margin: 0; padding: 0; box-sizing: border-box; cursor: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj4KICA8ZWxsaXBzZSBjeD0iMTYiIGN5PSIyMiIgcng9IjciIHJ5PSI2IiBmaWxsPSIjMDBmNWZmIiBvcGFjaXR5PSIwLjkiLz4KICA8ZWxsaXBzZSBjeD0iOSIgY3k9IjE0IiByeD0iMyIgcnk9IjMuNSIgZmlsbD0iIzAwZjVmZiIgb3BhY2l0eT0iMC45Ii8+CiAgPGVsbGlwc2UgY3g9IjE2IiBjeT0iMTIiIHJ4PSIzIiByeT0iMy41IiBmaWxsPSIjMDBmNWZmIiBvcGFjaXR5PSIwLjkiLz4KICA8ZWxsaXBzZSBjeD0iMjMiIGN5PSIxNCIgcng9IjMiIHJ5PSIzLjUiIGZpbGw9IiMwMGY1ZmYiIG9wYWNpdHk9IjAuOSIvPgogIDxlbGxpcHNlIGN4PSI1IiBjeT0iMTkiIHJ4PSIyLjUiIHJ5PSIzIiBmaWxsPSIjMDBmNWZmIiBvcGFjaXR5PSIwLjkiLz4KPC9zdmc+Cg==") 16 16, auto !important; }
 
     body {
       font-family: 'Rajdhani', sans-serif;
@@ -538,7 +538,7 @@
         <div class="set-item" onclick="loadMixcloud(this, 'RtB Mix', 'https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-11-dj_fluffypaw_nya%2F')"><span class="play-dot"></span>RtB Mix #11</div>
         <div class="set-item" onclick="loadMixcloud(this, 'RtB Mix', 'https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-12-dj_fluffypaw_nya%2F')"><span class="play-dot"></span>RtB Mix #12</div>
         <div class="set-item" onclick="loadMixcloud(this, 'RtB Mix', 'https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-13-dj_fluffypaw_nya%2F')"><span class="play-dot"></span>RtB Mix #13</div>
-        <div class="set-item" onclick="loadMixcloud(this, 'RtB Mix', 'https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-13-dj_fluffypaw_nya%2F')"><span class="play-dot"></span>RtB Mix #14</div>
+        <div class="set-item" onclick="loadMixcloud(this, 'RtB Mix', 'https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-14-dj_fluffypaw_nya%2F')"><span class="play-dot"></span>RtB Mix #14</div>
       </div>
     </div>
 
@@ -642,10 +642,6 @@
 
     document.getElementById('mixcloud-iframe').src = iframeSrc;
     document.getElementById('mixcloud-container').style.display = 'block';
-    document.getElementById('no-player').style.display = 'none';
-
-    document.getElementById('tracklist-content').innerHTML =
-      '<div class="no-selection"><div class="big-icon">🎵</div><p>Tracklist auf Mixcloud verfügbar</p></div>';
   }
 </script>
 </body>
