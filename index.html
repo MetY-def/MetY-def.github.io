@@ -453,6 +453,101 @@
     /* === CUSTOM CURSOR === */
     * { cursor: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj4KICA8ZWxsaXBzZSBjeD0iMTYiIGN5PSIyMiIgcng9IjciIHJ5PSI2IiBmaWxsPSIjMDBmNWZmIiBvcGFjaXR5PSIwLjkiLz4KICA8ZWxsaXBzZSBjeD0iOSIgY3k9IjE0IiByeD0iMyIgcnk9IjMuNSIgZmlsbD0iIzAwZjVmZiIgb3BhY2l0eT0iMC45Ii8+CiAgPGVsbGlwc2UgY3g9IjE2IiBjeT0iMTIiIHJ4PSIzIiByeT0iMy41IiBmaWxsPSIjMDBmNWZmIiBvcGFjaXR5PSIwLjkiLz4KICA8ZWxsaXBzZSBjeD0iMjMiIGN5PSIxNCIgcng9IjMiIHJ5PSIzLjUiIGZpbGw9IiMwMGY1ZmYiIG9wYWNpdHk9IjAuOSIvPgogIDxlbGxpcHNlIGN4PSI1IiBjeT0iMTkiIHJ4PSIyLjUiIHJ5PSIzIiBmaWxsPSIjMDBmNWZmIiBvcGFjaXR5PSIwLjkiLz4KPC9zdmc+Cg==") 16 16, auto !important; }
 
+    /* === NAV TABS === */
+    .main-nav {
+      margin-left: auto;
+      display: flex;
+      gap: 8px;
+    }
+
+    .nav-btn {
+      background: none;
+      border: 1px solid rgba(0,245,255,0.2);
+      color: var(--muted);
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 6px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s;
+      letter-spacing: 0.05em;
+    }
+
+    .nav-btn:hover {
+      color: var(--cyan);
+      border-color: var(--cyan);
+      background: rgba(0,245,255,0.05);
+    }
+
+    .nav-btn.active {
+      color: var(--cyan);
+      border-color: var(--cyan);
+      background: rgba(0,245,255,0.08);
+    }
+
+    /* === VRCHAT GRID === */
+    .vrchat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+      padding: 40px;
+    }
+
+    .world-card {
+      background: rgba(13,17,23,0.95);
+      border: 1px solid rgba(0,245,255,0.12);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .world-card:hover {
+      border-color: rgba(0,245,255,0.4);
+      transform: translateY(-4px);
+    }
+
+    .world-img {
+      width: 100%;
+      height: 180px;
+      background: rgba(0,245,255,0.04);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      border-bottom: 1px solid rgba(0,245,255,0.08);
+    }
+
+    .world-info {
+      padding: 20px;
+    }
+
+    .world-name {
+      font-family: 'Orbitron', monospace;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 12px;
+      letter-spacing: 0.03em;
+    }
+
+    .world-link {
+      display: inline-block;
+      color: var(--cyan);
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+      border: 1px solid rgba(0,245,255,0.3);
+      padding: 6px 14px;
+      border-radius: 6px;
+      transition: all 0.2s;
+    }
+
+    .world-link:hover {
+      background: rgba(0,245,255,0.1);
+      border-color: var(--cyan);
+    }
+
     /* === NEON GLOW EFFECTS === */
     .glow-cyan { text-shadow: 0 0 20px rgba(0,245,255,0.6); }
     .glow-pink { text-shadow: 0 0 20px rgba(255,0,200,0.6); }
@@ -483,9 +578,14 @@
 
 <header>
   <h1>DJ FluffyPaw Nya</h1>
-  <span class="subtitle">// Mixes & Sets</span>
+  <span class="subtitle">// Mixes, Sets & More</span>
+  <nav class="main-nav">
+    <button class="nav-btn active" onclick="showSection('musik', this)">🎵 Musik</button>
+    <button class="nav-btn" onclick="showSection('vrchat', this)">🌍 VRChat-Welten</button>
+  </nav>
 </header>
 
+<div id="section-musik">
 <div class="layout">
   <!-- SIDEBAR -->
   <aside class="sidebar">
@@ -622,9 +722,41 @@
   </main>
 </div>
 
+</div>
+</div>
+
+<div id="section-vrchat" style="display:none;">
+  <div class="vrchat-grid">
+
+    <div class="world-card">
+      <div class="world-img"><img src="rtc.png" alt="Rock the Coffee" style="width:100%;height:100%;object-fit:cover;"></div>
+      <div class="world-info">
+        <h2 class="world-name">Rock the Coffee by Ma'irra</h2>
+        <a class="world-link" href="https://vrchat.com/home/launch?worldId=wrld_8369b253-eb0d-42a0-ba76-f837761b9608" target="_blank">In VRChat öffnen ↗</a>
+      </div>
+    </div>
+
+    <div class="world-card">
+      <div class="world-img"><img src="rtb.png" alt="Rock the Bar" style="width:100%;height:100%;object-fit:cover;"></div>
+      <div class="world-info">
+        <h2 class="world-name">Rock the Bar by Ma'irra</h2>
+        <a class="world-link" href="https://vrchat.com/home/launch?worldId=wrld_8da940f5-bbb3-4afd-8954-28b957fb30e0" target="_blank">In VRChat öffnen ↗</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
 <footer>DJ FluffyPaw Nya &nbsp;·&nbsp; Hosted on GitHub Pages</footer>
 
 <script>
+  function showSection(id, btn) {
+    document.getElementById('section-musik').style.display = id === 'musik' ? 'block' : 'none';
+    document.getElementById('section-vrchat').style.display = id === 'vrchat' ? 'block' : 'none';
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+
   let currentItem = null;
 
   function toggleCat(id, btn) {
