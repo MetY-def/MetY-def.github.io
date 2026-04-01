@@ -708,7 +708,7 @@
       <img src="hero.png" alt="DJ FluffyPaw Nya am Pult" class="hero-img">
     </div>
     <div class="hero-btns">
-      <button class="hero-btn-primary" onclick="showSection('musik', document.querySelectorAll('.nav-btn')[1])">Musik hören</button>
+      <button class="hero-btn-secondary" onclick="showSection('musik', document.querySelectorAll('.nav-btn')[1])">Musik hören</button>
       <button class="hero-btn-secondary" onclick="showSection('vrchat', document.querySelectorAll('.nav-btn')[2])">VRChat beitreten</button>
     </div>
   </div>
@@ -887,7 +887,7 @@
     document.getElementById('section-musik').style.display = id === 'musik' ? 'flex' : 'none';
     document.getElementById('section-vrchat').style.display = id === 'vrchat' ? 'block' : 'none';
     document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
+    if (btn && btn.classList.contains('nav-btn')) btn.classList.add('active');
   }
 
   let currentItem = null;
