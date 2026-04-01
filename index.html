@@ -453,6 +453,120 @@
     /* === CUSTOM CURSOR === */
     * { cursor: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj4KICA8ZWxsaXBzZSBjeD0iMTYiIGN5PSIyMiIgcng9IjciIHJ5PSI2IiBmaWxsPSIjMDBmNWZmIiBvcGFjaXR5PSIwLjkiLz4KICA8ZWxsaXBzZSBjeD0iOSIgY3k9IjE0IiByeD0iMyIgcnk9IjMuNSIgZmlsbD0iIzAwZjVmZiIgb3BhY2l0eT0iMC45Ii8+CiAgPGVsbGlwc2UgY3g9IjE2IiBjeT0iMTIiIHJ4PSIzIiByeT0iMy41IiBmaWxsPSIjMDBmNWZmIiBvcGFjaXR5PSIwLjkiLz4KICA8ZWxsaXBzZSBjeD0iMjMiIGN5PSIxNCIgcng9IjMiIHJ5PSIzLjUiIGZpbGw9IiMwMGY1ZmYiIG9wYWNpdHk9IjAuOSIvPgogIDxlbGxpcHNlIGN4PSI1IiBjeT0iMTkiIHJ4PSIyLjUiIHJ5PSIzIiBmaWxsPSIjMDBmNWZmIiBvcGFjaXR5PSIwLjkiLz4KPC9zdmc+Cg==") 16 16, auto !important; }
 
+    /* === HOME SECTION === */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+      padding: 40px;
+    }
+
+    .hero-img-wrap {
+      width: 100%;
+      max-width: 700px;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(0,245,255,0.15);
+    }
+
+    .hero-img { width: 100%; display: block; }
+
+    .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+
+    .hero-btn-primary {
+      background: rgba(0,245,255,0.08);
+      border: 1px solid rgba(0,245,255,0.4);
+      color: var(--cyan);
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 10px 24px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+      letter-spacing: 0.05em;
+    }
+
+    .hero-btn-primary:hover { background: rgba(0,245,255,0.15); }
+
+    .hero-btn-secondary {
+      background: none;
+      border: 1px solid rgba(255,255,255,0.15);
+      color: var(--text);
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 10px 24px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+      letter-spacing: 0.05em;
+    }
+
+    .hero-btn-secondary:hover { border-color: rgba(255,255,255,0.4); }
+
+    .home-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      padding: 0 40px 32px;
+    }
+
+    .home-card {
+      background: rgba(13,17,23,0.95);
+      border-radius: 12px;
+      padding: 20px;
+      border: 1px solid rgba(0,245,255,0.08);
+    }
+
+    .home-card-pink { border-color: rgba(255,0,200,0.08); }
+    .home-card-purple { border-color: rgba(157,0,255,0.08); }
+
+    .home-card-day {
+      font-family: 'Orbitron', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      color: var(--cyan);
+      margin-bottom: 8px;
+    }
+
+    .home-card-name {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .home-card-time { font-size: 0.85rem; color: var(--muted); }
+
+    .home-stats {
+      display: flex;
+      gap: 16px;
+      padding: 0 40px 40px;
+    }
+
+    .home-stat {
+      background: rgba(13,17,23,0.95);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      padding: 20px 28px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .stat-icon { font-size: 1.8rem; }
+    .stat-num { font-family: 'Orbitron', monospace; font-size: 1.4rem; font-weight: 700; color: var(--cyan); }
+    .stat-label { font-size: 0.85rem; color: var(--muted); }
+
+    @media (max-width: 700px) {
+      .hero { flex-direction: column; padding: 20px; }
+      .hero-img-wrap { width: 100%; }
+      .home-cards { grid-template-columns: 1fr; padding: 0 20px 20px; }
+      .home-stats { flex-direction: column; padding: 0 20px 20px; }
+    }
+
     /* === NAV TABS === */
     .main-nav {
       margin-left: auto;
@@ -577,15 +691,67 @@
 <body>
 
 <header>
-  <h1>DJ FluffyPaw Nya</h1>
   <span class="subtitle">// Mixes, Sets & More</span>
   <nav class="main-nav">
-    <button class="nav-btn active" onclick="showSection('musik', this)">🎵 Musik</button>
-    <button class="nav-btn" onclick="showSection('vrchat', this)">🌍 VRChat-Welten</button>
+    <button class="nav-btn active" onclick="showSection('home', this)">Home</button>
+    <button class="nav-btn" onclick="showSection('musik', document.querySelectorAll('.nav-btn')[1])">Musik</button>
+    <button class="nav-btn" onclick="showSection('vrchat', document.querySelectorAll('.nav-btn')[2])">VRChat-Welten</button>
   </nav>
 </header>
 
-<div id="section-musik">
+<div id="section-home">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-img-wrap">
+      <img src="hero.png" alt="DJ FluffyPaw Nya am Pult" class="hero-img">
+    </div>
+    <div class="hero-btns">
+      <button class="hero-btn-primary" onclick="showSection('musik', document.querySelectorAll('.nav-btn')[1])">Musik hören</button>
+      <button class="hero-btn-secondary" onclick="showSection('vrchat', document.querySelectorAll('.nav-btn')[2])">VRChat beitreten</button>
+    </div>
+  </div>
+
+  <!-- SCHEDULE CARDS -->
+  <div class="home-cards">
+    <div class="home-card home-card-cyan">
+      <div class="home-card-day">DIENSTAG</div>
+      <div class="home-card-name">Dance Dienstag</div>
+      <div class="home-card-time">19:00 – 20:30 Uhr</div>
+    </div>
+    <div class="home-card home-card-pink">
+      <div class="home-card-day" style="color:var(--pink)">FREITAG</div>
+      <div class="home-card-name">Rock the Bar</div>
+      <div class="home-card-time">19:00 – 20:30 Uhr</div>
+    </div>
+    <div class="home-card home-card-purple">
+      <div class="home-card-day" style="color:var(--purple)">SPONTAN</div>
+      <div class="home-card-name">Spontanität</div>
+      <div class="home-card-time">Wann immer die Vibes passen</div>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="home-stats">
+    <div class="home-stat">
+      <span class="stat-icon">🎧</span>
+      <div>
+        <div class="stat-num">50+</div>
+        <div class="stat-label">Sets & Mixes</div>
+      </div>
+    </div>
+    <div class="home-stat">
+      <span class="stat-icon">🌍</span>
+      <div>
+        <div class="stat-num">2</div>
+        <div class="stat-label">VRChat Welten</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div id="section-musik" style="display:none;">
 <div class="layout">
   <!-- SIDEBAR -->
   <aside class="sidebar">
@@ -734,7 +900,8 @@
 
 <script>
   function showSection(id, btn) {
-    document.getElementById('section-musik').style.display = id === 'musik' ? 'block' : 'none';
+    document.getElementById('section-home').style.display = id === 'home' ? 'block' : 'none';
+    document.getElementById('section-musik').style.display = id === 'musik' ? 'flex' : 'none';
     document.getElementById('section-vrchat').style.display = id === 'vrchat' ? 'block' : 'none';
     document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
