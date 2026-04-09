@@ -662,6 +662,96 @@
       border-color: var(--cyan);
     }
 
+    /* === ÜBER MICH === */
+    .about-wrap {
+      display: flex;
+      gap: 48px;
+      padding: 40px;
+      align-items: flex-start;
+    }
+
+    .about-img-wrap {
+      flex-shrink: 0;
+      width: 280px;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(0,245,255,0.15);
+    }
+
+    .about-img { width: 100%; display: block; }
+
+    .about-text { flex: 1; }
+
+    .about-label {
+      font-family: 'Orbitron', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.35em;
+      color: var(--cyan);
+      margin-bottom: 10px;
+    }
+
+    .about-name {
+      font-family: 'Orbitron', monospace;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+
+    .about-bio {
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+
+    .about-bio strong { color: var(--text); }
+
+    .about-tags-label, .about-links-label {
+      font-family: 'Orbitron', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      margin-top: 24px;
+    }
+
+    .about-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+
+    .about-tag {
+      padding: 5px 14px;
+      border: 1px solid rgba(0,245,255,0.3);
+      border-radius: 20px;
+      font-size: 0.85rem;
+      color: var(--cyan);
+      letter-spacing: 0.05em;
+    }
+
+    .about-links { display: flex; flex-wrap: wrap; gap: 10px; }
+
+    .about-link {
+      padding: 8px 20px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      transition: all 0.2s;
+    }
+
+    .about-link.twitch { background: rgba(145,70,255,0.12); border: 1px solid rgba(145,70,255,0.4); color: #9146ff; }
+    .about-link.twitch:hover { background: rgba(145,70,255,0.22); }
+    .about-link.mixcloud { background: rgba(0,245,255,0.08); border: 1px solid rgba(0,245,255,0.3); color: var(--cyan); }
+    .about-link.mixcloud:hover { background: rgba(0,245,255,0.15); }
+    .about-link.youtube { background: rgba(255,0,0,0.08); border: 1px solid rgba(255,0,0,0.3); color: #ff4444; }
+    .about-link.youtube:hover { background: rgba(255,0,0,0.15); }
+
+    @media (max-width: 700px) {
+      .about-wrap { flex-direction: column; padding: 20px; }
+      .about-img-wrap { width: 100%; }
+    }
+
     /* === NEON GLOW EFFECTS === */
     .glow-cyan { text-shadow: 0 0 20px rgba(0,245,255,0.6); }
     .glow-pink { text-shadow: 0 0 20px rgba(255,0,200,0.6); }
@@ -695,8 +785,9 @@
   <span class="subtitle">// Mixes, Sets & More</span>
   <nav class="main-nav">
     <button class="nav-btn active" onclick="showSection('home', this)">Home</button>
-    <button class="nav-btn" onclick="showSection('musik', document.querySelectorAll('.nav-btn')[1])">Musik</button>
-    <button class="nav-btn" onclick="showSection('vrchat', document.querySelectorAll('.nav-btn')[2])">VRChat-Welten</button>
+    <button class="nav-btn" onclick="showSection('musik', this)">Musik</button>
+    <button class="nav-btn" onclick="showSection('vrchat', this)">VRChat-Welten</button>
+    <button class="nav-btn" onclick="showSection('about', this)">Über Fluffy</button>
   </nav>
 </header>
 
@@ -882,6 +973,45 @@
   </div>
 </div>
 
+<div id="section-about" style="display:none;">
+  <div class="about-wrap">
+
+    <div class="about-img-wrap">
+      <img src="about.png" alt="DJ FluffyPaw Nya" class="about-img">
+    </div>
+
+    <div class="about-text">
+      <div class="about-label">◈ Über Fluffy</div>
+      <h2 class="about-name">DJ FluffyPaw Nya</h2>
+      <p class="about-bio">
+        Hey! Ich bin <strong>Marla</strong> (she/her), Baujahr 1991 aus dem Sauerland in NRW.
+        Gamerin seit frühester Kindheit, Musikliebhaberin durch und durch — und seit dem
+        <strong>9. September 2025</strong> aktive DJ auf Twitch.
+      </p>
+      <p class="about-bio">
+        Ich bin Stotterin, aber Streamen gibt mir Mut! Ich liebe Games, Musik und gute Stimmung —
+        und genau das bringe ich bei jedem Set mit.
+      </p>
+
+      <div class="about-tags-label">Musikrichtungen</div>
+      <div class="about-tags">
+        <span class="about-tag">Trance</span>
+        <span class="about-tag">Techno</span>
+        <span class="about-tag">Hardtech</span>
+        <span class="about-tag">Schranz</span>
+      </div>
+
+      <div class="about-links-label">Wo du mich findest</div>
+      <div class="about-links">
+        <a class="about-link twitch" href="https://twitch.tv/DJ_FluffyPaw_Nya" target="_blank">Twitch · DJ_FluffyPaw_Nya</a>
+        <a class="about-link twitch" href="https://www.twitch.tv/einfach_mety" target="_blank">Twitch · einfach_mety</a>
+        <a class="about-link youtube" href="https://www.youtube.com/@xMetYx" target="_blank">YouTube · xMetYx</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
 <footer>DJ FluffyPaw Nya &nbsp;·&nbsp; Hosted on GitHub Pages</footer>
 
 <script>
@@ -889,6 +1019,7 @@
     document.getElementById('section-home').style.display = id === 'home' ? 'block' : 'none';
     document.getElementById('section-musik').style.display = id === 'musik' ? 'flex' : 'none';
     document.getElementById('section-vrchat').style.display = id === 'vrchat' ? 'block' : 'none';
+    document.getElementById('section-about').style.display = id === 'about' ? 'block' : 'none';
     document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
     if (btn && btn.classList.contains('nav-btn')) btn.classList.add('active');
   }
