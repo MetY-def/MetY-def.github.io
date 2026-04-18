@@ -938,7 +938,8 @@
       <img src="flyer.png" alt="DJ FluffyPaw Nya Flyer" style="max-width: 420px; width: 100%; border-radius: 12px; border: 1px solid rgba(255,0,0,0.2);">
     </div>
   </main>
-</div>
+</div><!-- end .layout -->
+</div><!-- end #section-musik -->
 
 <div id="section-vrchat" style="display:none;">
   <div style="text-align:center; padding: 32px 40px 0;">
@@ -962,7 +963,7 @@
 <script>
   function showSection(id, btn) {
     document.getElementById('section-home').style.display = id === 'home' ? 'block' : 'none';
-    document.getElementById('section-musik').style.display = id === 'musik' ? 'flex' : 'none';
+    document.getElementById('section-musik').style.display = id === 'musik' ? 'block' : 'none';
     document.getElementById('section-vrchat').style.display = id === 'vrchat' ? 'block' : 'none';
     document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
     if (btn && btn.classList.contains('nav-btn')) btn.classList.add('active');
