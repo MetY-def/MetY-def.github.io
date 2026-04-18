@@ -786,6 +786,7 @@
   <nav class="main-nav">
     <button class="nav-btn active" onclick="showSection('home', this)">Home</button>
     <button class="nav-btn" onclick="showSection('musik', this)">Musik</button>
+    <button class="nav-btn" onclick="showSection('vrchat', this)">VRChat-Welten</button>
   </nav>
 </header>
 
@@ -798,7 +799,6 @@
     </div>
     <div class="hero-btns">
       <button class="nav-btn" onclick="showSection('musik', document.querySelectorAll('.nav-btn')[1])">Musik hören</button>
-      <button class="nav-btn" onclick="showSection('vrchat', document.querySelectorAll('.nav-btn')[2])">VRChat beitreten</button>
     </div>
   </div>
 
@@ -940,12 +940,30 @@
   </main>
 </div>
 
+<div id="section-vrchat" style="display:none;">
+  <div style="text-align:center; padding: 32px 40px 0;">
+    <a href="https://vrc.group/ROCKBA.4999" target="_blank">
+      <img src="rtb_banner.png" alt="Rock the Bar VRChat Gruppe" style="max-width: 600px; width: 100%; border-radius: 12px; border: 1px solid rgba(255,100,0,0.3);">
+    </a>
+    <p style="margin-top: 12px; color: #556080; font-size: 0.85rem; letter-spacing: 0.1em;">↑ Klicke um unserer VRChat-Gruppe beizutreten</p>
+  </div>
+
+  <div style="padding: 32px 40px;">
+    <div style="font-family: 'Orbitron', monospace; font-size: 0.65rem; letter-spacing: 0.3em; color: var(--muted); text-transform: uppercase; margin-bottom: 16px;">◈ Party Welten</div>
+    <div style="background: rgba(13,17,23,0.95); border: 1px solid rgba(0,245,255,0.1); border-radius: 12px; padding: 32px; text-align: center; color: var(--muted); font-size: 0.95rem; letter-spacing: 0.1em; margin-bottom: 32px;">Coming Soon</div>
+
+    <div style="font-family: 'Orbitron', monospace; font-size: 0.65rem; letter-spacing: 0.3em; color: var(--muted); text-transform: uppercase; margin-bottom: 16px;">◈ Cozy Welten</div>
+    <div style="background: rgba(13,17,23,0.95); border: 1px solid rgba(157,0,255,0.1); border-radius: 12px; padding: 32px; text-align: center; color: var(--muted); font-size: 0.95rem; letter-spacing: 0.1em;">Coming Soon</div>
+  </div>
+</div>
+
 <footer>DJ FluffyPaw Nya &nbsp;·&nbsp; Hosted on GitHub Pages</footer>
 
 <script>
   function showSection(id, btn) {
     document.getElementById('section-home').style.display = id === 'home' ? 'block' : 'none';
     document.getElementById('section-musik').style.display = id === 'musik' ? 'flex' : 'none';
+    document.getElementById('section-vrchat').style.display = id === 'vrchat' ? 'block' : 'none';
     document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
     if (btn && btn.classList.contains('nav-btn')) btn.classList.add('active');
   }
