@@ -776,6 +776,178 @@
       header { padding: 16px 20px; }
       header h1 { font-size: 1.4rem; }
     }
+    /* === ÜBER FLUFFY SECTION === */
+    #section-about { position: relative; overflow: hidden; }
+
+    #section-about::after {
+      content: '';
+      position: fixed; inset: 0;
+      background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,245,255,0.012) 3px, rgba(0,245,255,0.012) 4px);
+      pointer-events: none; z-index: 0;
+    }
+
+    .about-hero {
+      display: grid;
+      grid-template-columns: 400px 1fr;
+      min-height: calc(100vh - 140px);
+      position: relative; z-index: 1;
+    }
+
+    .about-img-panel {
+      position: relative; overflow: hidden; background: #000;
+    }
+
+    .about-img-panel img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: top center;
+      display: block; opacity: 0.92;
+      filter: contrast(1.05) saturate(1.1);
+      animation: imgFadeIn 1s ease forwards;
+    }
+
+    @keyframes imgFadeIn {
+      from { opacity: 0; transform: scale(1.04); }
+      to   { opacity: 0.92; transform: scale(1); }
+    }
+
+    .about-img-panel::after {
+      content: '';
+      position: absolute; top: 0; right: 0;
+      width: 2px; height: 100%;
+      background: linear-gradient(180deg, transparent 0%, var(--cyan) 20%, var(--pink) 50%, var(--purple) 80%, transparent 100%);
+      box-shadow: 0 0 24px var(--cyan), 0 0 48px rgba(0,245,255,0.3);
+      animation: edgePulse 4s ease-in-out infinite;
+    }
+
+    @keyframes edgePulse {
+      0%, 100% { opacity: 0.7; } 50% { opacity: 1; }
+    }
+
+    .about-img-panel::before {
+      content: ''; position: absolute; inset: 12px;
+      border: 1px solid rgba(0,245,255,0.15); border-radius: 4px;
+      pointer-events: none; z-index: 2;
+    }
+
+    .about-content {
+      padding: 56px 56px 56px 64px;
+      display: flex; flex-direction: column; justify-content: center;
+      position: relative;
+      background: linear-gradient(135deg, rgba(13,17,23,0.98) 0%, rgba(8,10,15,0.95) 100%);
+    }
+
+    .about-content::before {
+      content: ''; position: absolute; top: 24px; right: 24px;
+      width: 40px; height: 40px;
+      border-top: 2px solid rgba(0,245,255,0.3); border-right: 2px solid rgba(0,245,255,0.3);
+    }
+    .about-content::after {
+      content: ''; position: absolute; bottom: 24px; left: 24px;
+      width: 40px; height: 40px;
+      border-bottom: 2px solid rgba(255,0,200,0.3); border-left: 2px solid rgba(255,0,200,0.3);
+    }
+
+    .sys-label {
+      font-family: 'Orbitron', monospace; font-size: 0.55rem;
+      letter-spacing: 0.4em; color: var(--cyan); text-transform: uppercase;
+      opacity: 0.7; margin-bottom: 6px;
+    }
+
+    .about-name-heading {
+      font-family: 'Orbitron', monospace;
+      font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 900;
+      letter-spacing: 0.06em; line-height: 1.1; margin-bottom: 6px;
+      background: linear-gradient(90deg, var(--cyan), var(--pink));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text; background-size: 200% auto;
+      animation: shimmer 5s linear infinite;
+    }
+
+    .about-sub {
+      font-size: 1rem; color: var(--muted); letter-spacing: 0.15em;
+      text-transform: uppercase; margin-bottom: 40px;
+    }
+
+    .about-divider {
+      width: 80px; height: 2px;
+      background: linear-gradient(90deg, var(--cyan), transparent);
+      margin-bottom: 32px;
+    }
+
+    .about-bio-block { margin-bottom: 36px; }
+
+    .about-bio-block p {
+      font-size: 1.05rem; line-height: 1.75;
+      color: rgba(224,232,255,0.75); margin-bottom: 14px;
+    }
+
+    .about-bio-block p:last-child { margin-bottom: 0; }
+    .about-bio-block strong { color: var(--text); font-weight: 600; }
+    .about-bio-block .hl-cyan { color: var(--cyan); font-weight: 600; }
+    .about-bio-block .hl-pink { color: var(--pink); font-weight: 600; }
+
+    .steckbrief {
+      background: rgba(0,245,255,0.03); border: 1px solid rgba(0,245,255,0.1);
+      border-radius: 12px; padding: 24px 28px; margin-bottom: 36px;
+    }
+
+    .steckbrief-title {
+      font-family: 'Orbitron', monospace; font-size: 0.55rem;
+      letter-spacing: 0.35em; color: var(--muted); text-transform: uppercase; margin-bottom: 18px;
+    }
+
+    .steckbrief-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 14px 32px;
+    }
+
+    .steckbrief-item { display: flex; flex-direction: column; gap: 2px; }
+
+    .steckbrief-key {
+      font-family: 'Orbitron', monospace; font-size: 0.5rem;
+      letter-spacing: 0.25em; color: var(--muted); text-transform: uppercase;
+    }
+
+    .steckbrief-val { font-size: 0.95rem; color: var(--text); font-weight: 600; letter-spacing: 0.03em; }
+    .steckbrief-val.spink { color: var(--pink); }
+    .steckbrief-val.scyan { color: var(--cyan); }
+    .steckbrief-val.spurple { color: var(--purple); }
+
+    .about-links { display: flex; flex-wrap: wrap; gap: 10px; }
+
+    .alink {
+      display: flex; align-items: center; gap: 8px;
+      padding: 9px 20px; border-radius: 8px;
+      font-family: 'Rajdhani', sans-serif; font-size: 0.9rem; font-weight: 600;
+      text-decoration: none; letter-spacing: 0.06em; transition: all 0.2s;
+    }
+
+    .alink.twitch { background: rgba(145,70,255,0.1); border: 1px solid rgba(145,70,255,0.35); color: #9146ff; }
+    .alink.twitch:hover { background: rgba(145,70,255,0.2); }
+    .alink.mixcloud { background: rgba(0,245,255,0.07); border: 1px solid rgba(0,245,255,0.3); color: var(--cyan); }
+    .alink.mixcloud:hover { background: rgba(0,245,255,0.15); }
+    .alink.vrchat { background: rgba(157,0,255,0.08); border: 1px solid rgba(157,0,255,0.3); color: var(--purple); }
+    .alink.vrchat:hover { background: rgba(157,0,255,0.18); }
+
+    .about-stats-bar {
+      border-top: 1px solid rgba(0,245,255,0.08);
+      padding: 28px 56px; display: flex; gap: 48px;
+      background: rgba(8,10,15,0.9); position: relative; z-index: 1; flex-wrap: wrap;
+    }
+
+    .stat-block { display: flex; flex-direction: column; gap: 4px; }
+    .stat-num-big { font-family: 'Orbitron', monospace; font-size: 1.8rem; font-weight: 700; color: var(--cyan); line-height: 1; }
+    .stat-num-big.spink { color: var(--pink); }
+    .stat-num-big.spurple { color: var(--purple); }
+    .stat-num-big.syellow { color: var(--yellow); }
+    .stat-label-small { font-size: 0.8rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
+
+    @media (max-width: 900px) {
+      .about-hero { grid-template-columns: 1fr; grid-template-rows: 340px auto; }
+      .about-content { padding: 36px 24px; }
+      .steckbrief-grid { grid-template-columns: 1fr; }
+      .about-stats-bar { padding: 24px; gap: 24px; }
+    }
+
   </style>
 </head>
 <body>
@@ -787,6 +959,7 @@
     <button class="nav-btn active" onclick="showSection('home', this)">Home</button>
     <button class="nav-btn" onclick="showSection('musik', this)">Musik</button>
     <button class="nav-btn" onclick="showSection('vrchat', this)">VRChat-Welten</button>
+    <button class="nav-btn" onclick="showSection('about', this)">Über Fluffy</button>
   </nav>
 </header>
 
@@ -958,6 +1131,98 @@
   </div>
 </div>
 
+<div id="section-about" style="display:none;">
+  <div class="about-hero">
+
+    <!-- Portrait -->
+    <div class="about-img-panel">
+      <img src="about.png" alt="FluffyPaw Nya Avatar" />
+    </div>
+
+    <!-- Content -->
+    <div class="about-content">
+      <div class="sys-label">◈ Steckbrief // Unit-ID: FPN-001</div>
+      <h2 class="about-name-heading">DJ FluffyPaw Nya</h2>
+      <div class="about-sub">// DJ · VRChat Resident · Katzenmensch</div>
+      <div class="about-divider"></div>
+
+      <div class="about-bio-block">
+        <p>
+          Hey, ich bin <strong>FluffyPaw</strong> – oder kurz einfach <span class="hl-cyan">Fluffy</span>.
+          Eine graue Katze mit leuchtend grünen Augen, einem Faible für gute Beats
+          und einer leichten Sucht nach VRChat-Abenden, die viel zu spät enden.
+        </p>
+        <p>
+          Als DJ treibe ich mich regelmäßig auf virtuellen Dancefloors herum –
+          ob beim <span class="hl-pink">Dance Dienstag</span>, beim
+          <span class="hl-pink">Rock the Bar</span> oder einfach dann,
+          wenn die Vibes es verlangen. Musik ist für mich kein Hobby –
+          es ist die Sprache, in der ich am lautesten bin.
+        </p>
+        <p>
+          Wenn ich nicht hinter den Decks stehe, erkunde ich VRChat-Welten,
+          baue an meinem Setup oder trinke zu viel Kaffee. Typisch.
+        </p>
+      </div>
+
+      <div class="steckbrief">
+        <div class="steckbrief-title">◈ System-Daten</div>
+        <div class="steckbrief-grid">
+          <div class="steckbrief-item">
+            <span class="steckbrief-key">Spezies</span>
+            <span class="steckbrief-val spink">Katze (grau, flauschig)</span>
+          </div>
+          <div class="steckbrief-item">
+            <span class="steckbrief-key">Plattform</span>
+            <span class="steckbrief-val scyan">VRChat · Twitch · Mixcloud</span>
+          </div>
+          <div class="steckbrief-item">
+            <span class="steckbrief-key">Genres</span>
+            <span class="steckbrief-val">Dance · Electronic · Vibes</span>
+          </div>
+          <div class="steckbrief-item">
+            <span class="steckbrief-key">Live-Shows</span>
+            <span class="steckbrief-val spurple">Di & Fr, 19–20:30 Uhr</span>
+          </div>
+          <div class="steckbrief-item">
+            <span class="steckbrief-key">Gefährlich bei</span>
+            <span class="steckbrief-val spink">Guten Drops & Kaffee</span>
+          </div>
+          <div class="steckbrief-item">
+            <span class="steckbrief-key">Status</span>
+            <span class="steckbrief-val scyan">Online &amp; bereit zum Auflegen</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-links">
+        <a href="https://www.twitch.tv/FluffyPaw" target="_blank" class="alink twitch">▶ Twitch</a>
+        <a href="https://www.mixcloud.com/FluffyPaw/" target="_blank" class="alink mixcloud">◈ Mixcloud</a>
+        <a href="https://vrc.group/ROCKBA.4999" target="_blank" class="alink vrchat">⬡ VRChat Gruppe</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="about-stats-bar">
+    <div class="stat-block">
+      <span class="stat-num-big">58+</span>
+      <span class="stat-label-small">Sets aufgenommen</span>
+    </div>
+    <div class="stat-block">
+      <span class="stat-num-big spink">3</span>
+      <span class="stat-label-small">Show-Reihen</span>
+    </div>
+    <div class="stat-block">
+      <span class="stat-num-big spurple">∞</span>
+      <span class="stat-label-small">Vibes geliefert</span>
+    </div>
+    <div class="stat-block">
+      <span class="stat-num-big syellow">1</span>
+      <span class="stat-label-small">Flauschige Katze</span>
+    </div>
+  </div>
+</div>
+
 <footer>DJ FluffyPaw Nya &nbsp;·&nbsp; Hosted on GitHub Pages</footer>
 
 <script>
@@ -965,6 +1230,7 @@
     document.getElementById('section-home').style.display = id === 'home' ? 'block' : 'none';
     document.getElementById('section-musik').style.display = id === 'musik' ? 'block' : 'none';
     document.getElementById('section-vrchat').style.display = id === 'vrchat' ? 'block' : 'none';
+    document.getElementById('section-about').style.display = id === 'about' ? 'block' : 'none';
     document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
     if (btn && btn.classList.contains('nav-btn')) btn.classList.add('active');
   }
