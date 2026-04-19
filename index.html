@@ -1128,8 +1128,21 @@
 
       <!-- Dream Café -->
       <div class="world-card">
-        <div class="world-img" style="padding:0; overflow:hidden;">
-          <img src="VRChat_2026-04-19_20-48-22_316_1920x1080.png" alt="Dream Café" style="width:100%; height:100%; object-fit:cover; display:block;">
+        <!-- Slideshow -->
+        <div class="world-img" style="padding:0; overflow:hidden; position:relative;" id="dc-gallery">
+          <div id="dc-slides" style="display:flex; transition: transform 0.4s ease; height:100%;">
+            <img src="VRChat_2026-04-19_20-48-22_316_1920x1080.png" alt="Dream Café" style="min-width:100%; height:100%; object-fit:cover; display:block;">
+            <img src="VRChat_2026-04-19_20-39-49_439_1920x1080.png" alt="Dream Café" style="min-width:100%; height:100%; object-fit:cover; display:block;">
+            <img src="VRChat_2026-04-19_20-42-58_819_1920x1080.png" alt="Dream Café" style="min-width:100%; height:100%; object-fit:cover; display:block;">
+            <img src="VRChat_2026-04-19_20-43-19_727_1920x1080.png" alt="Dream Café" style="min-width:100%; height:100%; object-fit:cover; display:block;">
+            <img src="VRChat_2026-04-19_20-44-42_348_1920x1080.png" alt="Dream Café" style="min-width:100%; height:100%; object-fit:cover; display:block;">
+            <img src="VRChat_2026-04-19_20-45-11_164_1920x1080.png" alt="Dream Café" style="min-width:100%; height:100%; object-fit:cover; display:block;">
+          </div>
+          <!-- Prev / Next -->
+          <button onclick="dcSlide(-1)" style="position:absolute; left:8px; top:50%; transform:translateY(-50%); background:rgba(0,0,0,0.55); border:1px solid rgba(0,245,255,0.3); color:#00f5ff; font-size:1rem; width:28px; height:28px; border-radius:50%; cursor:pointer; display:flex; align-items:center; justify-content:center; line-height:1;">‹</button>
+          <button onclick="dcSlide(1)"  style="position:absolute; right:8px; top:50%; transform:translateY(-50%); background:rgba(0,0,0,0.55); border:1px solid rgba(0,245,255,0.3); color:#00f5ff; font-size:1rem; width:28px; height:28px; border-radius:50%; cursor:pointer; display:flex; align-items:center; justify-content:center; line-height:1;">›</button>
+          <!-- Counter -->
+          <div id="dc-counter" style="position:absolute; bottom:8px; right:10px; font-family:'Orbitron',monospace; font-size:0.55rem; letter-spacing:0.15em; color:rgba(255,255,255,0.6); background:rgba(0,0,0,0.5); padding:2px 8px; border-radius:10px;">1 / 1</div>
         </div>
         <div class="world-info">
           <div class="world-name">Dream Café</div>
@@ -1221,6 +1234,23 @@
     document.getElementById('mixcloud-iframe').src = iframeSrc;
     document.getElementById('mixcloud-container').style.display = 'block';
   }
+  // Dream Café Slideshow
+  let dcIndex = 0;
+  function dcSlide(dir) {
+    const slides = document.querySelectorAll('#dc-slides img');
+    const total = slides.length;
+    if (total <= 1) return;
+    dcIndex = (dcIndex + dir + total) % total;
+    document.getElementById('dc-slides').style.transform = `translateX(-${dcIndex * 100}%)`;
+    document.getElementById('dc-counter').textContent = `${dcIndex + 1} / ${total}`;
+  }
+  window.addEventListener('DOMContentLoaded', () => {
+    const total = document.querySelectorAll('#dc-slides img').length;
+    if (document.getElementById('dc-counter')) {
+      document.getElementById('dc-counter').textContent = `1 / ${total}`;
+    }
+  });
+
 </script>
 </body>
 </html>
