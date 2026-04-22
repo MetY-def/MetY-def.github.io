@@ -958,6 +958,7 @@
   <nav class="main-nav">
     <button class="nav-btn active" onclick="showSection('home', this)">Home</button>
     <button class="nav-btn" onclick="showSection('musik', this)">Musik</button>
+    <button class="nav-btn" onclick="showSection('streams', this)">Streams</button>
     <button class="nav-btn" onclick="showSection('vrchat', this)">VRChat-Welten</button>
     <button class="nav-btn" onclick="showSection('about', this)">Über Fluffy</button>
   </nav>
@@ -1206,6 +1207,76 @@
 
 </div><!-- end section-about -->
 
+<div id="section-streams" style="display:none;">
+
+  <!-- STREAM CARDS -->
+  <div style="padding: 40px 40px 0; display: flex; gap: 32px; justify-content: center; flex-wrap: wrap;">
+
+    <!-- Gaming Channel (links) -->
+    <div style="flex: 1; min-width: 280px; max-width: 520px; background: rgba(13,17,23,0.95); border: 1px solid rgba(157,0,255,0.2); border-radius: 16px; overflow: hidden; position: relative;">
+      <div style="position:absolute; top:0; left:0; right:0; height:2px; background: linear-gradient(90deg, var(--purple), transparent);"></div>
+      <div style="padding: 20px 24px 16px; display: flex; align-items: center; justify-content: space-between;">
+        <div>
+          <div style="font-family:'Orbitron',monospace; font-size:0.55rem; letter-spacing:0.3em; color:var(--purple); text-transform:uppercase; margin-bottom:4px;">◈ Gaming Channel</div>
+          <div style="font-family:'Orbitron',monospace; font-size:0.95rem; font-weight:700; color:var(--text);">einfach_mety</div>
+        </div>
+        <span id="gaming-status" style="font-family:'Orbitron',monospace; font-size:0.5rem; letter-spacing:0.2em; padding:4px 10px; border-radius:20px; background:rgba(85,96,128,0.2); border:1px solid rgba(85,96,128,0.3); color:var(--muted); text-transform:uppercase;">● Offline</span>
+      </div>
+      <!-- Stream preview / offline image -->
+      <div style="position:relative; width:100%; aspect-ratio:16/9; background:#000; overflow:hidden;">
+        <div id="gaming-offline" style="width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px; background: linear-gradient(135deg, rgba(157,0,255,0.06), rgba(8,10,15,0.95));">
+          <img src="gaming_offline.png" onerror="this.style.display='none'" alt="" style="width:100%; height:100%; object-fit:cover; position:absolute; inset:0;">
+          <div style="position:relative; z-index:1; text-align:center;">
+            <div style="font-family:'Orbitron',monospace; font-size:0.6rem; letter-spacing:0.3em; color:var(--muted); text-transform:uppercase; margin-bottom:8px;">Curently Offline</div>
+            <div style="width:48px; height:48px; border-radius:50%; border:2px solid rgba(157,0,255,0.3); display:flex; align-items:center; justify-content:center; margin:0 auto; color:rgba(157,0,255,0.4); font-size:1.4rem;">▶</div>
+          </div>
+        </div>
+        <iframe id="gaming-embed" src="" style="display:none; width:100%; height:100%; border:none;" allowfullscreen></iframe>
+      </div>
+      <div style="padding:16px 24px;">
+        <a href="https://www.twitch.tv/einfach_mety" target="_blank" style="display:inline-flex; align-items:center; gap:8px; background:rgba(157,0,255,0.1); border:1px solid rgba(157,0,255,0.35); color:var(--purple); font-family:'Rajdhani',sans-serif; font-size:0.9rem; font-weight:600; padding:8px 18px; border-radius:8px; text-decoration:none; letter-spacing:0.05em;">▶ Auf Twitch ansehen</a>
+      </div>
+    </div>
+
+    <!-- Musik Channel (rechts) -->
+    <div style="flex: 1; min-width: 280px; max-width: 520px; background: rgba(13,17,23,0.95); border: 1px solid rgba(0,245,255,0.2); border-radius: 16px; overflow: hidden; position: relative;">
+      <div style="position:absolute; top:0; left:0; right:0; height:2px; background: linear-gradient(90deg, var(--cyan), transparent);"></div>
+      <div style="padding: 20px 24px 16px; display: flex; align-items: center; justify-content: space-between;">
+        <div>
+          <div style="font-family:'Orbitron',monospace; font-size:0.55rem; letter-spacing:0.3em; color:var(--cyan); text-transform:uppercase; margin-bottom:4px;">◈ Musik Channel</div>
+          <div style="font-family:'Orbitron',monospace; font-size:0.95rem; font-weight:700; color:var(--text);">dj_fluffypaw_nya</div>
+        </div>
+        <span id="musik-status" style="font-family:'Orbitron',monospace; font-size:0.5rem; letter-spacing:0.2em; padding:4px 10px; border-radius:20px; background:rgba(85,96,128,0.2); border:1px solid rgba(85,96,128,0.3); color:var(--muted); text-transform:uppercase;">● Offline</span>
+      </div>
+      <!-- Stream preview / offline image -->
+      <div style="position:relative; width:100%; aspect-ratio:16/9; background:#000; overflow:hidden;">
+        <div id="musik-offline" style="width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px; background: linear-gradient(135deg, rgba(0,245,255,0.06), rgba(8,10,15,0.95));">
+          <img src="musik_offline.png" onerror="this.style.display='none'" alt="" style="width:100%; height:100%; object-fit:cover; position:absolute; inset:0;">
+          <div style="position:relative; z-index:1; text-align:center;">
+            <div style="font-family:'Orbitron',monospace; font-size:0.6rem; letter-spacing:0.3em; color:var(--muted); text-transform:uppercase; margin-bottom:8px;">Curently Offline</div>
+            <div style="width:48px; height:48px; border-radius:50%; border:2px solid rgba(0,245,255,0.3); display:flex; align-items:center; justify-content:center; margin:0 auto; color:rgba(0,245,255,0.4); font-size:1.4rem;">▶</div>
+          </div>
+        </div>
+        <iframe id="musik-embed" src="" style="display:none; width:100%; height:100%; border:none;" allowfullscreen></iframe>
+      </div>
+      <div style="padding:16px 24px;">
+        <a href="https://www.twitch.tv/dj_fluffypaw_nya" target="_blank" style="display:inline-flex; align-items:center; gap:8px; background:rgba(0,245,255,0.07); border:1px solid rgba(0,245,255,0.3); color:var(--cyan); font-family:'Rajdhani',sans-serif; font-size:0.9rem; font-weight:600; padding:8px 18px; border-radius:8px; text-decoration:none; letter-spacing:0.05em;">▶ Auf Twitch ansehen</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- INFO / DISCORD WIDGET -->
+  <div style="padding: 32px 40px 40px;">
+    <div style="font-family:'Orbitron',monospace; font-size:0.65rem; letter-spacing:0.3em; color:var(--muted); text-transform:uppercase; margin-bottom:16px; text-align:center;">◈ Info</div>
+    <div style="background: rgba(13,17,23,0.95); border: 1px solid rgba(0,245,255,0.1); border-radius: 16px; overflow:hidden; max-width: 800px; margin: 0 auto;">
+      <iframe src="https://discord.com/widget?id=1479466581812838440&theme=dark" width="100%" height="400" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" style="display:block;"></iframe>
+    </div>
+    <p style="text-align:center; margin-top:12px; font-size:0.8rem; color:var(--muted); letter-spacing:0.1em;">Tritt dem Discord bei um keine Infos zu verpassen</p>
+  </div>
+
+</div>
+
 <footer>DJ FluffyPaw Nya &nbsp;·&nbsp; Hosted on GitHub Pages</footer>
 
 <script>
@@ -1214,8 +1285,39 @@
     document.getElementById('section-musik').style.display = id === 'musik' ? 'block' : 'none';
     document.getElementById('section-vrchat').style.display = id === 'vrchat' ? 'block' : 'none';
     document.getElementById('section-about').style.display = id === 'about' ? 'block' : 'none';
+    document.getElementById('section-streams').style.display = id === 'streams' ? 'block' : 'none';
     document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
     if (btn && btn.classList.contains('nav-btn')) btn.classList.add('active');
+    if (id === 'streams') checkStreams();
+  }
+
+  function setStreamOnline(key, channel) {
+    const statusEl = document.getElementById(key + '-status');
+    const offlineEl = document.getElementById(key + '-offline');
+    const embedEl  = document.getElementById(key + '-embed');
+    statusEl.textContent = '● Online';
+    statusEl.style.background = 'rgba(0,200,80,0.15)';
+    statusEl.style.borderColor = 'rgba(0,200,80,0.4)';
+    statusEl.style.color = '#00c850';
+    offlineEl.style.display = 'none';
+    embedEl.src = `https://player.twitch.tv/?channel=${channel}&parent=${location.hostname}&autoplay=false`;
+    embedEl.style.display = 'block';
+  }
+
+  function checkStreams() {
+    // Twitch embed zeigt automatisch Live wenn verfügbar – Status via oEmbed prüfen
+    ['gaming|einfach_mety', 'musik|dj_fluffypaw_nya'].forEach(pair => {
+      const [key, channel] = pair.split('|');
+      fetch(`https://www.twitch.tv/${channel}`)
+        .then(() => {
+          // Embed immer einbinden – Twitch zeigt selbst Offline/Online
+          const embedEl = document.getElementById(key + '-embed');
+          const offlineEl = document.getElementById(key + '-offline');
+          embedEl.src = `https://player.twitch.tv/?channel=${channel}&parent=${location.hostname}&autoplay=false`;
+          embedEl.style.display = 'block';
+          offlineEl.style.display = 'none';
+        }).catch(() => {});
+    });
   }
 
   let currentItem = null;
