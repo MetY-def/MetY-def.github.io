@@ -510,6 +510,13 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 16px;
+      padding: 0 40px 16px;
+    }
+
+    .home-cards-gaming {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
       padding: 0 40px 32px;
     }
 
@@ -518,6 +525,13 @@
       border-radius: 12px;
       padding: 20px;
       border: 1px solid rgba(0,245,255,0.08);
+    }
+
+    .home-card-sm {
+      background: rgba(13,17,23,0.95);
+      border-radius: 10px;
+      padding: 14px 16px;
+      border: 1px solid rgba(85,96,128,0.15);
     }
 
     .home-card-pink { border-color: rgba(255,0,200,0.08); }
@@ -539,6 +553,27 @@
     }
 
     .home-card-time { font-size: 0.85rem; color: var(--muted); }
+
+    .home-card-day-sm {
+      font-family: 'Orbitron', monospace;
+      font-size: 0.55rem;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+      margin-bottom: 5px;
+      text-transform: uppercase;
+    }
+
+    .home-card-time-sm { font-size: 0.8rem; color: rgba(224,232,255,0.5); }
+
+    .home-section-label {
+      font-family: 'Orbitron', monospace;
+      font-size: 0.55rem;
+      letter-spacing: 0.3em;
+      color: var(--muted);
+      text-transform: uppercase;
+      padding: 0 40px 10px;
+      opacity: 0.6;
+    }
 
     .home-stats {
       display: flex;
@@ -973,10 +1008,13 @@
     </div>
     <div class="hero-btns">
       <button class="nav-btn" onclick="showSection('musik', document.querySelectorAll('.nav-btn')[1])">Musik hören</button>
+      <button class="nav-btn" onclick="showSection('streams', document.querySelectorAll('.nav-btn')[2])">Streams schauen</button>
+      <button class="nav-btn" onclick="showSection('vrchat', document.querySelectorAll('.nav-btn')[3])">Welten erkunden</button>
     </div>
   </div>
 
-  <!-- SCHEDULE CARDS -->
+  <!-- MUSIK STREAMS -->
+  <div class="home-section-label">◈ Musik Streams</div>
   <div class="home-cards">
     <div class="home-card home-card-cyan">
       <div class="home-card-day">DIENSTAG</div>
@@ -992,6 +1030,31 @@
       <div class="home-card-day" style="color:var(--purple)">SPONTAN</div>
       <div class="home-card-name">Spontanität</div>
       <div class="home-card-time">Wann immer die Vibes passen</div>
+    </div>
+  </div>
+
+  <!-- GAMING STREAMS -->
+  <div class="home-section-label">◈ Gaming Streams</div>
+  <div class="home-cards-gaming">
+    <div class="home-card-sm">
+      <div class="home-card-day-sm">Montag</div>
+      <div class="home-card-time-sm">17:30 – 21:00 Uhr</div>
+    </div>
+    <div class="home-card-sm">
+      <div class="home-card-day-sm">Mittwoch</div>
+      <div class="home-card-time-sm">17:30 – 21:00 Uhr</div>
+    </div>
+    <div class="home-card-sm">
+      <div class="home-card-day-sm">Donnerstag</div>
+      <div class="home-card-time-sm">17:30 – 21:00 Uhr</div>
+    </div>
+    <div class="home-card-sm" style="border-color: rgba(85,96,128,0.08); opacity: 0.5;">
+      <div class="home-card-day-sm">Samstag</div>
+      <div class="home-card-time-sm">Streamfrei</div>
+    </div>
+    <div class="home-card-sm" style="border-color: rgba(255,230,0,0.12);">
+      <div class="home-card-day-sm" style="color: var(--yellow);">Sonntag</div>
+      <div class="home-card-time-sm" style="color: rgba(255,230,0,0.6);">Sponntag · 15:00 – 19:00 Uhr</div>
     </div>
   </div>
 
