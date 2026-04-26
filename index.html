@@ -1487,6 +1487,47 @@
     if (tab === 'clips') loadClips();
   }
 
+  async function checkStreamStatus() {
+    try {
+      const res = await fetch('https://lighthearted-starship-97edf3.netlify.app/.netlify/functions/clips?type=status');
+      const data = await res.json();
+
+      updateStreamCard('gaming', data.gaming);
+      updateStreamCard('musik', data.musik);
+    } catch(e) {}
+  }
+
+  function updateStreamCard(key, streamData) {
+    const statusEl = document.getElementById(key + '-status');
+    const offlineEl = document.getElementById(key + '-offline');
+    const embedEl = document.getElementById(key + '-embed');
+
+    if (streamData) {
+      // Online
+      statusEl.textContent = '● Online';
+      statusEl.style.background = 'rgba(0,200,80,0.15)';
+      statusEl.style.borderColor = 'rgba(0,200,80,0.4)';
+      statusEl.style.color = '#00c850';
+      offlineEl.querySelector('div div:first-child').textContent = 'Currently Online';
+      offlineEl.querySelector('div div:first-child').style.color = '#00c850';
+    } else {
+      // Offline
+      statusEl.textContent = '● Offline';
+      statusEl.style.background = 'rgba(85,96,128,0.2)';
+      statusEl.style.borderColor = 'rgba(85,96,128,0.3)';
+      statusEl.style.color = 'var(--muted)';
+      offlineEl.querySelector('div div:first-child').textContent = 'Currently Offline';
+      offlineEl.querySelector('div div:first-child').style.color = 'var(--muted)';
+    }
+  }
+
+  // Status prüfen wenn Streams-Tab geöffnet wird
+  const origShowSection = showSection;
+  function showSection(id, btn) {
+    origShowSection(id, btn);
+    if (id === 'streams') checkStreamStatus();
+  }
+
   let clipsLoaded = false;
   async function loadClips() {
     if (clipsLoaded) return;
