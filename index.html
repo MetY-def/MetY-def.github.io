@@ -635,6 +635,56 @@
       background: rgba(0,245,255,0.08);
     }
 
+    /* Streams Dropdown */
+    .nav-dropdown {
+      position: relative;
+    }
+
+    .nav-dropdown-menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(13,17,23,0.98);
+      border: 1px solid rgba(0,245,255,0.2);
+      border-radius: 8px;
+      overflow: hidden;
+      min-width: 130px;
+      z-index: 100;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    }
+
+    .nav-dropdown:hover .nav-dropdown-menu {
+      display: block;
+    }
+
+    .nav-dropdown-item {
+      display: block;
+      width: 100%;
+      padding: 10px 18px;
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.15s;
+      white-space: nowrap;
+    }
+
+    .nav-dropdown-item:hover {
+      color: var(--cyan);
+      background: rgba(0,245,255,0.06);
+    }
+
+    .nav-dropdown-item.active {
+      color: var(--cyan);
+    }
+
     /* === VRCHAT GRID === */
     .vrchat-grid {
       display: grid;
@@ -993,7 +1043,13 @@
   <nav class="main-nav">
     <button class="nav-btn active" onclick="showSection('home', this)">Home</button>
     <button class="nav-btn" onclick="showSection('musik', this)">Musik</button>
-    <button class="nav-btn" onclick="showSection('streams', this)">Streams</button>
+    <div class="nav-dropdown">
+      <button class="nav-btn" id="nav-streams-btn" onclick="showSection('streams', this); showStreamTab('live', document.getElementById('tab-live'))">Streams</button>
+      <div class="nav-dropdown-menu">
+        <button class="nav-dropdown-item" id="drop-live" onclick="showSection('streams', document.getElementById('nav-streams-btn')); showStreamTab('live', document.getElementById('tab-live'))">Live</button>
+        <button class="nav-dropdown-item" id="drop-clips" onclick="showSection('streams', document.getElementById('nav-streams-btn')); showStreamTab('clips', document.getElementById('tab-clips'))">Clips</button>
+      </div>
+    </div>
     <button class="nav-btn" onclick="showSection('vrchat', this)">VRChat-Welten</button>
     <button class="nav-btn" onclick="showSection('about', this)">Über Fluffy</button>
   </nav>
@@ -1217,7 +1273,7 @@
       <!-- Dream Café -->
       <div class="world-card">
         <div class="world-img" style="padding:0; overflow:hidden;">
-          <img src="World-Dream-Cafe-Image-2022322f1.file_b29e179e-aec9-4685-9f01-cfd232b8b299.1.png" alt="Dream Café" style="width:100%; height:100%; object-fit:cover; display:block;">
+          <img src="dreamcafe.png" alt="Dream Café" style="width:100%; height:100%; object-fit:cover; display:block;">
         </div>
         <div class="world-info">
           <div class="world-name">Dream Café</div>
@@ -1274,6 +1330,15 @@
 </div><!-- end section-about -->
 
 <div id="section-streams" style="display:none;">
+
+  <!-- SUB-NAV -->
+  <div style="display:flex; gap:12px; padding: 28px 40px 0;">
+    <button class="stream-tab active" id="tab-live" onclick="showStreamTab('live', this)" style="font-family:'Orbitron',monospace; font-size:0.6rem; letter-spacing:0.2em; padding:8px 20px; border-radius:8px; background:rgba(0,245,255,0.1); border:1px solid rgba(0,245,255,0.3); color:var(--cyan); cursor:pointer; transition:all 0.2s;">◈ LIVE</button>
+    <button class="stream-tab" id="tab-clips" onclick="showStreamTab('clips', this)" style="font-family:'Orbitron',monospace; font-size:0.6rem; letter-spacing:0.2em; padding:8px 20px; border-radius:8px; background:rgba(85,96,128,0.1); border:1px solid rgba(85,96,128,0.2); color:var(--muted); cursor:pointer; transition:all 0.2s;">◈ CLIPS</button>
+  </div>
+
+  <!-- LIVE TAB -->
+  <div id="streamtab-live">
 
   <!-- STREAM CARDS -->
   <div style="padding: 40px 40px 0; display: flex; gap: 32px; justify-content: center; flex-wrap: wrap;">
@@ -1347,7 +1412,17 @@
     </div>
   </div>
 
-</div>
+</div><!-- end streamtab-live -->
+
+  <!-- CLIPS TAB -->
+  <div id="streamtab-clips" style="display:none; padding: 28px 40px 40px;">
+    <div style="font-family:'Orbitron',monospace; font-size:0.65rem; letter-spacing:0.3em; color:var(--muted); text-transform:uppercase; margin-bottom:20px;">◈ Clips · Einfach_MetY</div>
+    <div id="clips-grid" style="display:grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap:20px;">
+      <div style="color:var(--muted); font-size:0.9rem; letter-spacing:0.05em;">Clips werden geladen...</div>
+    </div>
+  </div>
+
+</div><!-- end section-streams -->
 
 <footer>DJ FluffyPaw Nya &nbsp;·&nbsp; Hosted on GitHub Pages</footer>
 
@@ -1392,7 +1467,55 @@
     });
   }
 
-  let currentItem = null;
+  function showStreamTab(tab, btn) {
+    document.getElementById('streamtab-live').style.display = tab === 'live' ? 'block' : 'none';
+    document.getElementById('streamtab-clips').style.display = tab === 'clips' ? 'block' : 'none';
+    document.querySelectorAll('.stream-tab').forEach(b => {
+      b.style.background = 'rgba(85,96,128,0.1)';
+      b.style.borderColor = 'rgba(85,96,128,0.2)';
+      b.style.color = 'var(--muted)';
+    });
+    btn.style.background = 'rgba(0,245,255,0.1)';
+    btn.style.borderColor = 'rgba(0,245,255,0.3)';
+    btn.style.color = 'var(--cyan)';
+    if (tab === 'clips') loadClips();
+  }
+
+  let clipsLoaded = false;
+  async function loadClips() {
+    if (clipsLoaded) return;
+    const grid = document.getElementById('clips-grid');
+    try {
+      const res = await fetch('/.netlify/functions/clips');
+      const data = await res.json();
+      grid.innerHTML = '';
+      const sorted = data.data.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+      sorted.forEach(clip => {
+        const card = document.createElement('div');
+        card.style.cssText = 'background:rgba(13,17,23,0.95); border:1px solid rgba(0,245,255,0.1); border-radius:12px; overflow:hidden; cursor:pointer; transition:border-color 0.2s;';
+        card.onmouseover = () => card.style.borderColor = 'rgba(0,245,255,0.35)';
+        card.onmouseout = () => card.style.borderColor = 'rgba(0,245,255,0.1)';
+        card.innerHTML = `
+          <div style="position:relative; width:100%; aspect-ratio:16/9; overflow:hidden; background:#000;">
+            <img src="${clip.thumbnail_url}" style="width:100%; height:100%; object-fit:cover; display:block; opacity:0.85;">
+            <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center;">
+              <div style="width:44px; height:44px; border-radius:50%; background:rgba(0,0,0,0.6); border:2px solid rgba(0,245,255,0.5); display:flex; align-items:center; justify-content:center; color:var(--cyan); font-size:1.1rem;">▶</div>
+            </div>
+            <div style="position:absolute; bottom:6px; right:8px; font-family:'Orbitron',monospace; font-size:0.5rem; letter-spacing:0.1em; color:rgba(255,255,255,0.7); background:rgba(0,0,0,0.6); padding:2px 7px; border-radius:8px;">${Math.floor(clip.duration)}s</div>
+          </div>
+          <div style="padding:12px 14px;">
+            <div style="font-size:0.9rem; font-weight:600; color:var(--text); margin-bottom:6px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${clip.title}</div>
+            <div style="font-family:'Orbitron',monospace; font-size:0.5rem; letter-spacing:0.15em; color:var(--muted);">${clip.view_count} Views · ${new Date(clip.created_at).toLocaleDateString('de-DE')}</div>
+          </div>
+        `;
+        card.onclick = () => window.open(clip.url, '_blank');
+        grid.appendChild(card);
+      });
+      clipsLoaded = true;
+    } catch(e) {
+      grid.innerHTML = '<div style="color:var(--muted); font-size:0.9rem;">Clips konnten nicht geladen werden.</div>';
+    }
+  }
 
   function toggleCat(id, btn) {
     const list = document.getElementById('cat-' + id);
