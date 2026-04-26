@@ -1046,7 +1046,6 @@
     <div class="nav-dropdown">
       <button class="nav-btn" id="nav-streams-btn" onclick="showSection('streams', this); showStreamTab('live', document.getElementById('tab-live'))">Streams</button>
       <div class="nav-dropdown-menu">
-        <button class="nav-dropdown-item" id="drop-live" onclick="showSection('streams', document.getElementById('nav-streams-btn')); showStreamTab('live', document.getElementById('tab-live'))">Live</button>
         <button class="nav-dropdown-item" id="drop-clips" onclick="showSection('streams', document.getElementById('nav-streams-btn')); showStreamTab('clips', document.getElementById('tab-clips'))">Clips</button>
       </div>
     </div>
@@ -1331,12 +1330,6 @@
 
 <div id="section-streams" style="display:none;">
 
-  <!-- SUB-NAV -->
-  <div style="display:flex; gap:12px; padding: 28px 40px 0;">
-    <button class="stream-tab active" id="tab-live" onclick="showStreamTab('live', this)" style="font-family:'Orbitron',monospace; font-size:0.6rem; letter-spacing:0.2em; padding:8px 20px; border-radius:8px; background:rgba(0,245,255,0.1); border:1px solid rgba(0,245,255,0.3); color:var(--cyan); cursor:pointer; transition:all 0.2s;">◈ LIVE</button>
-    <button class="stream-tab" id="tab-clips" onclick="showStreamTab('clips', this)" style="font-family:'Orbitron',monospace; font-size:0.6rem; letter-spacing:0.2em; padding:8px 20px; border-radius:8px; background:rgba(85,96,128,0.1); border:1px solid rgba(85,96,128,0.2); color:var(--muted); cursor:pointer; transition:all 0.2s;">◈ CLIPS</button>
-  </div>
-
   <!-- LIVE TAB -->
   <div id="streamtab-live">
 
@@ -1475,9 +1468,12 @@
       b.style.borderColor = 'rgba(85,96,128,0.2)';
       b.style.color = 'var(--muted)';
     });
-    btn.style.background = 'rgba(0,245,255,0.1)';
-    btn.style.borderColor = 'rgba(0,245,255,0.3)';
-    btn.style.color = 'var(--cyan)';
+    const activeTab = document.getElementById('tab-' + tab);
+    if (activeTab) {
+      activeTab.style.background = 'rgba(0,245,255,0.1)';
+      activeTab.style.borderColor = 'rgba(0,245,255,0.3)';
+      activeTab.style.color = 'var(--cyan)';
+    }
     if (tab === 'clips') loadClips();
   }
 
