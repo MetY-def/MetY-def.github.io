@@ -1438,36 +1438,7 @@
     document.getElementById('section-streams').style.display = id === 'streams' ? 'block' : 'none';
     document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
     if (btn && btn.classList.contains('nav-btn')) btn.classList.add('active');
-    if (id === 'streams') checkStreams();
-  }
-
-  function setStreamOnline(key, channel) {
-    const statusEl = document.getElementById(key + '-status');
-    const offlineEl = document.getElementById(key + '-offline');
-    const embedEl  = document.getElementById(key + '-embed');
-    statusEl.textContent = '● Online';
-    statusEl.style.background = 'rgba(0,200,80,0.15)';
-    statusEl.style.borderColor = 'rgba(0,200,80,0.4)';
-    statusEl.style.color = '#00c850';
-    offlineEl.style.display = 'none';
-    embedEl.src = `https://player.twitch.tv/?channel=${channel}&parent=${location.hostname}&autoplay=false`;
-    embedEl.style.display = 'block';
-  }
-
-  function checkStreams() {
-    // Twitch embed zeigt automatisch Live wenn verfügbar – Status via oEmbed prüfen
-    ['gaming|einfach_mety', 'musik|dj_fluffypaw_nya'].forEach(pair => {
-      const [key, channel] = pair.split('|');
-      fetch(`https://www.twitch.tv/${channel}`)
-        .then(() => {
-          // Embed immer einbinden – Twitch zeigt selbst Offline/Online
-          const embedEl = document.getElementById(key + '-embed');
-          const offlineEl = document.getElementById(key + '-offline');
-          embedEl.src = `https://player.twitch.tv/?channel=${channel}&parent=${location.hostname}&autoplay=false`;
-          embedEl.style.display = 'block';
-          offlineEl.style.display = 'none';
-        }).catch(() => {});
-    });
+    if (id === 'streams') checkStreamStatus();
   }
 
   function showStreamTab(tab, btn) {
@@ -1519,13 +1490,6 @@
       offlineEl.querySelector('div div:first-child').textContent = 'Currently Offline';
       offlineEl.querySelector('div div:first-child').style.color = 'var(--muted)';
     }
-  }
-
-  // Status prüfen wenn Streams-Tab geöffnet wird
-  const origShowSection = showSection;
-  function showSection(id, btn) {
-    origShowSection(id, btn);
-    if (id === 'streams') checkStreamStatus();
   }
 
   let clipsLoaded = false;
