@@ -1492,7 +1492,7 @@
     if (clipsLoaded) return;
     const grid = document.getElementById('clips-grid');
     try {
-      const res = await fetch('/.netlify/functions/clips');
+      const res = await fetch('https://lighthearted-starship-97edf3.netlify.app/.netlify/functions/clips');
       const data = await res.json();
       grid.innerHTML = '';
       const sorted = data.data.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
