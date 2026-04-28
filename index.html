@@ -1361,7 +1361,7 @@
         <div id="gaming-offline" style="width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px; background: linear-gradient(135deg, rgba(157,0,255,0.06), rgba(8,10,15,0.95));">
           <img src="gaming_offline.png" onerror="this.style.display='none'" alt="" style="width:100%; height:100%; object-fit:cover; position:absolute; inset:0;">
           <div style="position:relative; z-index:1; text-align:center;">
-            <div style="font-family:'Orbitron',monospace; font-size:0.6rem; letter-spacing:0.3em; color:var(--muted); text-transform:uppercase;">Currently Offline</div>
+            <div id="gaming-status-text" style="font-family:'Orbitron',monospace; font-size:0.6rem; letter-spacing:0.3em; color:var(--muted); text-transform:uppercase;">Currently Offline</div>
           </div>
         </div>
         <iframe id="gaming-embed" src="" style="display:none; width:100%; height:100%; border:none;" allowfullscreen></iframe>
@@ -1386,7 +1386,7 @@
         <div id="musik-offline" style="width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px; background: linear-gradient(135deg, rgba(0,245,255,0.06), rgba(8,10,15,0.95));">
           <img src="musik_offline.png" onerror="this.style.display='none'" alt="" style="width:100%; height:100%; object-fit:cover; position:absolute; inset:0;">
           <div style="position:relative; z-index:1; text-align:center;">
-            <div style="font-family:'Orbitron',monospace; font-size:0.6rem; letter-spacing:0.3em; color:var(--muted); text-transform:uppercase;">Currently Offline</div>
+            <div id="musik-status-text" style="font-family:'Orbitron',monospace; font-size:0.6rem; letter-spacing:0.3em; color:var(--muted); text-transform:uppercase;">Currently Offline</div>
           </div>
         </div>
         <iframe id="musik-embed" src="" style="display:none; width:100%; height:100%; border:none;" allowfullscreen></iframe>
@@ -1468,25 +1468,26 @@
 
   function updateStreamCard(key, streamData) {
     const statusEl = document.getElementById(key + '-status');
-    const offlineEl = document.getElementById(key + '-offline');
-    const embedEl = document.getElementById(key + '-embed');
+    const statusTextEl = document.getElementById(key + '-status-text');
 
     if (streamData) {
-      // Online
       statusEl.textContent = '● Online';
       statusEl.style.background = 'rgba(0,200,80,0.15)';
       statusEl.style.borderColor = 'rgba(0,200,80,0.4)';
       statusEl.style.color = '#00c850';
-      offlineEl.querySelector('div div:first-child').textContent = 'Currently Online';
-      offlineEl.querySelector('div div:first-child').style.color = '#00c850';
+      if (statusTextEl) {
+        statusTextEl.textContent = 'Currently Online';
+        statusTextEl.style.color = '#00c850';
+      }
     } else {
-      // Offline
       statusEl.textContent = '● Offline';
       statusEl.style.background = 'rgba(85,96,128,0.2)';
       statusEl.style.borderColor = 'rgba(85,96,128,0.3)';
       statusEl.style.color = 'var(--muted)';
-      offlineEl.querySelector('div div:first-child').textContent = 'Currently Offline';
-      offlineEl.querySelector('div div:first-child').style.color = 'var(--muted)';
+      if (statusTextEl) {
+        statusTextEl.textContent = 'Currently Offline';
+        statusTextEl.style.color = 'var(--muted)';
+      }
     }
   }
 
