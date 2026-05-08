@@ -1477,7 +1477,7 @@
 
   async function checkStreamStatus() {
     try {
-      const res = await fetch('https://lighthearted-starship-97edf3.netlify.app/.netlify/functions/clips?type=status');
+      const res = await fetch('https://lighthearted-starship-97edf3.netlify.app/.netlify/functions/clips?type=status', { method: 'GET' });
       const data = await res.json();
 
       updateStreamCard('gaming', data.gaming);
@@ -1512,7 +1512,7 @@
 
   let clipsLoaded = false;
   async function loadClips() {
-    if (clipsLoaded) return;
+    clipsLoaded = false;
     const grid = document.getElementById('clips-grid');
     try {
       const res = await fetch('https://lighthearted-starship-97edf3.netlify.app/.netlify/functions/clips');
