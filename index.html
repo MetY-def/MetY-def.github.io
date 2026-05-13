@@ -1161,6 +1161,7 @@
         <div class="set-item" onclick="loadMixcloud(this, 'Dance Dienstag', 'https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Fdance-dienstag-mix-21-dj_fluffypaw_nya%2F')"><span class="play-dot"></span>Dance Dienstag Mix #21</div>
         <div class="set-item" onclick="loadMixcloud(this, 'Dance Dienstag', 'https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Fdance-dienstag-mix-22-dj_fluffypaw_nya%2F')"><span class="play-dot"></span>Dance Dienstag Mix #22</div>
         <div class="set-item" onclick="loadMixcloud(this, 'Dance Dienstag', 'https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Fdance-dienstag-mix-23-dj_fluffypaw_nya%2F')"><span class="play-dot"></span>Dance Dienstag Mix #23</div>
+        <div class="set-item" onclick="loadMixcloud(this, 'Dance Dienstag', 'https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Fdance-dienstag-mix-24-dj_fluffypaw_nya%2F')"><span class="play-dot"></span>Dance Dienstag Mix #24</div>
       </div>
     </div>
 
@@ -1477,7 +1478,7 @@
 
   async function checkStreamStatus() {
     try {
-      const res = await fetch('https://lighthearted-starship-97edf3.netlify.app/.netlify/functions/clips?type=status', { method: 'GET' });
+      const res = await fetch('https://lighthearted-starship-97edf3.netlify.app/.netlify/functions/clips?type=status');
       const data = await res.json();
 
       updateStreamCard('gaming', data.gaming);
@@ -1512,7 +1513,7 @@
 
   let clipsLoaded = false;
   async function loadClips() {
-    clipsLoaded = false;
+    if (clipsLoaded) return;
     const grid = document.getElementById('clips-grid');
     try {
       const res = await fetch('https://lighthearted-starship-97edf3.netlify.app/.netlify/functions/clips');
