@@ -66,16 +66,31 @@ exports.handler = async (event) => {
       };
       return { statusCode: 200, headers: CORS_HEADERS, body: JSON.stringify(result) };
     } else {
-      // Clips abrufen – nach Datum sortiert
-      const clips = await httpsGet(
-        'https://api.twitch.tv/helix/clips?broadcaster_id=663021487&first=50',
-        headers
-      );
-      // Neueste zuerst sortieren
-      if (clips.data) {
-        clips.data.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+      // Clips abrufen nach Datum (neueste zuerst) – mehrere Seiten
+      let allClips = [];
+      let cursor = null;
+      let pages = 0;
+
+      while (pages < 4) {
+        const url = cursor
+          ? `https://api.twitch.tv/helix/clips?broadcaster_id=663021487&first=50&sort=time&after=${cursor}`
+          : `https://api.twitch.tv/helix/clips?broadcaster_id=663021487&first=50&sort=time`;
+
+        const result = await httpsGet(url, headers);
+        if (result.data && result.data.length > 0) {
+          allClips = allClips.concat(result.data);
+          cursor = result.pagination && result.pagination.cursor ? result.pagination.cursor : null;
+          if (!cursor) break;
+        } else {
+          break;
+        }
+        pages++;
       }
-      return { statusCode: 200, headers: CORS_HEADERS, body: JSON.stringify(clips) };
+
+      // Neueste zuerst
+      allClips.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+
+      return { statusCode: 200, headers: CORS_HEADERS, body: JSON.stringify({ data: allClips }) };
     }
   } catch (err) {
     return { statusCode: 500, headers: CORS_HEADERS, body: JSON.stringify({ error: err.message }) };
