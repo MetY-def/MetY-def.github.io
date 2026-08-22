@@ -159,9 +159,6 @@
     .cat-dance .cat-icon { background: rgba(0,245,255,0.15); }
     .cat-rtb .cat-icon { background: rgba(255,0,200,0.15); }
     .cat-spontan .cat-icon { background: rgba(157,0,255,0.15); }
-    .cat-tuesday-tunes .cat-icon { background: rgba(255,0,200,0.15); }
-    .cat-naughty-mischiefnight .cat-icon { background: rgba(255,0,92,0.15); }
-    .cat-morning-grove-sunday .cat-icon { background: rgba(157,0,255,0.15); }
 
     .category-btn .arrow {
       margin-left: auto;
@@ -1068,7 +1065,6 @@
       </div>
     </div>
     <button class="nav-btn" onclick="showSection('vrchat', this)">VRChat</button>
-    <button class="nav-btn" onclick="showSection('hardware', this)">Hardware</button>
     <button class="nav-btn" onclick="showSection('about', this)">Über Nyla</button>
   </nav>
 </header>
@@ -1106,7 +1102,7 @@
     </div>
     <div class="home-card" style="border-color: rgba(255,45,122,0.1);">
       <div class="home-card-day" style="color:var(--pink)">SPONTAN</div>
-      <div class="home-card-name">Spontanität</div>
+      <div class="home-card-name">Spontan Streams</div>
       <div class="home-card-time">Wenn's juckt. Wenn die Vibes stimmen.</div>
     </div>
   </div>
@@ -1119,10 +1115,12 @@
   <aside class="sidebar">
     <div class="sidebar-label">Kategorien</div>
 
-<div class="category cat-dance">
+    <!-- Dance Dienstag (Archiv) -->
+    <div class="category cat-dance">
       <button class="category-btn" onclick="toggleCat('dance', this)">
         <span class="cat-icon">▶</span>
-        Dance Dienstag<span class="arrow">›</span>
+        Dance Dienstag
+        <span class="arrow">›</span>
       </button>
       <div class="set-list" id="cat-dance">
         <div class="set-item" onclick="loadMixcloud(this, 'Dance Dienstag', 'https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Fdance-dienstag-mix-1-dj_nyla%2F')"><span class="play-dot"></span>Dance Dienstag Mix #1</div>
@@ -1152,61 +1150,45 @@
       </div>
     </div>
 
-    <div class="category cat-tuesday-tunes">
-      <button class="category-btn" onclick="toggleCat('tuesday-tunes', this)">
-        <span class="cat-icon">▶</span>
-        Tuesday Tunes
-        <span class="arrow">›</span>
-      </button>
-      <div class="set-list" id="cat-tuesday-tunes">
-      </div>
-    </div>
-
-<div class="category cat-rtb">
+    <!-- Rock the Bar (Archiv) -->
+    <div class="category cat-rtb">
       <button class="category-btn" onclick="toggleCat('rtb', this)">
         <span class="cat-icon">▶</span>
-        Rock the Bar<span class="arrow">›</span>
-      </button>
-      <div class="set-list" id="cat-rtb">
-        <div class="set-item" onclick="loadMixcloud(this, 'RtB Mix', 'https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-1-dj_nyla%2F')"><span class="play-dot"></span>RtB Mix #1</div>
-        <div class="set-item" onclick="loadMixcloud(this, 'RtB Mix', 'https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-2-dj_nyla%2F')"><span class="play-dot"></span>RtB Mix #2</div>
-        <div class="set-item" onclick="loadMixcloud(this, 'RtB Mix', 'https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-3-dj_nyla%2F')"><span class="play-dot"></span>RtB Mix #3</div>
-        <div class="set-item" onclick="loadMixcloud(this, 'RtB Mix', 'https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-4-dj_nyla%2F')"><span class="play-dot"></span>RtB Mix #4</div>
-        <div class="set-item" onclick="loadMixcloud(this, 'RtB Mix', 'https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-5-dj_nyla%2F')"><span class="play-dot"></span>RtB Mix #5</div>
-        <div class="set-item" onclick="loadMixcloud(this, 'RtB Mix', 'https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-6-dj_nyla%2F')"><span class="play-dot"></span>RtB Mix #6</div>
-        <div class="set-item" onclick="loadMixcloud(this, 'RtB Mix', 'https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-7-dj_nyla%2F')"><span class="play-dot"></span>RtB Mix #7</div>
-        <div class="set-item" onclick="loadMixcloud(this, 'RtB Mix', 'https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-8-dj_nyla%2F')"><span class="play-dot"></span>RtB Mix #8</div>
-        <div class="set-item" onclick="loadMixcloud(this, 'RtB Mix', 'https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-9-dj_nyla%2F')"><span class="play-dot"></span>RtB Mix #9</div>
-        <div class="set-item" onclick="loadMixcloud(this, 'RtB Mix', 'https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-10-dj_nyla%2F')"><span class="play-dot"></span>RtB Mix #10</div>
-        <div class="set-item" onclick="loadMixcloud(this, 'RtB Mix', 'https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-11-dj_nyla%2F')"><span class="play-dot"></span>RtB Mix #11</div>
-        <div class="set-item" onclick="loadMixcloud(this, 'RtB Mix', 'https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-12-dj_nyla%2F')"><span class="play-dot"></span>RtB Mix #12</div>
-        <div class="set-item" onclick="loadMixcloud(this, 'RtB Mix', 'https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-13-dj_nyla%2F')"><span class="play-dot"></span>RtB Mix #13</div>
-        <div class="set-item" onclick="loadMixcloud(this, 'RtB Mix', 'https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-14-dj_nyla%2F')"><span class="play-dot"></span>RtB Mix #14</div>
-        <div class="set-item" onclick="loadMixcloud(this, 'RtB Mix', 'https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-15-dj_nyla%2F')"><span class="play-dot"></span>RtB Mix #15</div>
-        <div class="set-item" onclick="loadMixcloud(this, 'RtB Mix', 'https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-16-dj_nyla%2F')"><span class="play-dot"></span>RtB Mix #16</div>
-        <div class="set-item" onclick="loadMixcloud(this, 'RtB Mix', 'https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-17-dj_nyla%2F')"><span class="play-dot"></span>RtB Mix #17</div>
-        <div class="set-item" onclick="loadMixcloud(this, 'RtB Mix', 'https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-18-dj_nyla%2F')"><span class="play-dot"></span>RtB Mix #18</div>
-        <div class="set-item" onclick="loadMixcloud(this, 'RtB Mix', 'https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-19-dj_nyla-mp3%2F')"><span class="play-dot"></span>RtB Mix #19</div>
-        <div class="set-item" onclick="loadMixcloud(this, 'RtB Mix', 'https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-20-dj_nyla%2F')"><span class="play-dot"></span>RtB Mix #20</div>
-        <div class="set-item" onclick="loadMixcloud(this, 'RtB Mix', 'https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-21-dj_nyla%2F')"><span class="play-dot"></span>RtB Mix #21</div>
-        <div class="set-item" onclick="loadMixcloud(this, 'RtB Mix', 'https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-22-dj_nyla%2F')"><span class="play-dot"></span>RtB Mix #22</div>
-      </div>
-    </div>
-
-    <div class="category cat-naughty-mischiefnight">
-      <button class="category-btn" onclick="toggleCat('naughty-mischiefnight', this)">
-        <span class="cat-icon">▶</span>
-        Naughty Mischiefnight
+        Rock the Bar
         <span class="arrow">›</span>
       </button>
-      <div class="set-list" id="cat-naughty-mischiefnight">
+      <div class="set-list" id="cat-rtb">
+        <div class="set-item" onclick="loadMixcloud(this, 'Rock the Bar', 'https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-1-dj_nyla%2F')"><span class="play-dot"></span>Rock the Bar Mix #1</div>
+        <div class="set-item" onclick="loadMixcloud(this, 'Rock the Bar', 'https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-2-dj_nyla%2F')"><span class="play-dot"></span>Rock the Bar Mix #2</div>
+        <div class="set-item" onclick="loadMixcloud(this, 'Rock the Bar', 'https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-3-dj_nyla%2F')"><span class="play-dot"></span>Rock the Bar Mix #3</div>
+        <div class="set-item" onclick="loadMixcloud(this, 'Rock the Bar', 'https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-4-dj_nyla%2F')"><span class="play-dot"></span>Rock the Bar Mix #4</div>
+        <div class="set-item" onclick="loadMixcloud(this, 'Rock the Bar', 'https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-5-dj_nyla%2F')"><span class="play-dot"></span>Rock the Bar Mix #5</div>
+        <div class="set-item" onclick="loadMixcloud(this, 'Rock the Bar', 'https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-6-dj_nyla%2F')"><span class="play-dot"></span>Rock the Bar Mix #6</div>
+        <div class="set-item" onclick="loadMixcloud(this, 'Rock the Bar', 'https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-7-dj_nyla%2F')"><span class="play-dot"></span>Rock the Bar Mix #7</div>
+        <div class="set-item" onclick="loadMixcloud(this, 'Rock the Bar', 'https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-8-dj_nyla%2F')"><span class="play-dot"></span>Rock the Bar Mix #8</div>
+        <div class="set-item" onclick="loadMixcloud(this, 'Rock the Bar', 'https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-9-dj_nyla%2F')"><span class="play-dot"></span>Rock the Bar Mix #9</div>
+        <div class="set-item" onclick="loadMixcloud(this, 'Rock the Bar', 'https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-10-dj_nyla%2F')"><span class="play-dot"></span>Rock the Bar Mix #10</div>
+        <div class="set-item" onclick="loadMixcloud(this, 'Rock the Bar', 'https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-11-dj_nyla%2F')"><span class="play-dot"></span>Rock the Bar Mix #11</div>
+        <div class="set-item" onclick="loadMixcloud(this, 'Rock the Bar', 'https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-12-dj_nyla%2F')"><span class="play-dot"></span>Rock the Bar Mix #12</div>
+        <div class="set-item" onclick="loadMixcloud(this, 'Rock the Bar', 'https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-13-dj_nyla%2F')"><span class="play-dot"></span>Rock the Bar Mix #13</div>
+        <div class="set-item" onclick="loadMixcloud(this, 'Rock the Bar', 'https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-14-dj_nyla%2F')"><span class="play-dot"></span>Rock the Bar Mix #14</div>
+        <div class="set-item" onclick="loadMixcloud(this, 'Rock the Bar', 'https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-15-dj_nyla%2F')"><span class="play-dot"></span>Rock the Bar Mix #15</div>
+        <div class="set-item" onclick="loadMixcloud(this, 'Rock the Bar', 'https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-16-dj_nyla%2F')"><span class="play-dot"></span>Rock the Bar Mix #16</div>
+        <div class="set-item" onclick="loadMixcloud(this, 'Rock the Bar', 'https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-17-dj_nyla%2F')"><span class="play-dot"></span>Rock the Bar Mix #17</div>
+        <div class="set-item" onclick="loadMixcloud(this, 'Rock the Bar', 'https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-18-dj_nyla%2F')"><span class="play-dot"></span>Rock the Bar Mix #18</div>
+        <div class="set-item" onclick="loadMixcloud(this, 'Rock the Bar', 'https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-19-dj_nyla-mp3%2F')"><span class="play-dot"></span>Rock the Bar Mix #19</div>
+        <div class="set-item" onclick="loadMixcloud(this, 'Rock the Bar', 'https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-20-dj_nyla%2F')"><span class="play-dot"></span>Rock the Bar Mix #20</div>
+        <div class="set-item" onclick="loadMixcloud(this, 'Rock the Bar', 'https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-21-dj_nyla%2F')"><span class="play-dot"></span>Rock the Bar Mix #21</div>
+        <div class="set-item" onclick="loadMixcloud(this, 'Rock the Bar', 'https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-22-dj_nyla%2F')"><span class="play-dot"></span>Rock the Bar Mix #22</div>
       </div>
     </div>
 
-<div class="category cat-spontan">
+    <!-- Spontanität (Archiv) -->
+    <div class="category cat-spontan">
       <button class="category-btn" onclick="toggleCat('spontan', this)">
         <span class="cat-icon">▶</span>
-        Spontanität<span class="arrow">›</span>
+        Spontanität
+        <span class="arrow">›</span>
       </button>
       <div class="set-list" id="cat-spontan">
         <div class="set-item" onclick="loadMixcloud(this, 'Spontanität', 'https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Fspontanit%C3%A4t-mix-1-dj_nyla%2F')"><span class="play-dot"></span>Spontanität Mix #1</div>
@@ -1233,15 +1215,42 @@
       </div>
     </div>
 
-    <div class="category cat-morning-grove-sunday">
-      <button class="category-btn" onclick="toggleCat('morning-grove-sunday', this)">
+    <!-- Tuesday Tunes (neu) -->
+    <div class="category cat-dance">
+      <button class="category-btn" onclick="toggleCat('tuesdaytunes', this)">
+        <span class="cat-icon">▶</span>
+        Tuesday Tunes
+        <span class="arrow">›</span>
+      </button>
+      <div class="set-list" id="cat-tuesdaytunes">
+        <div style="padding: 12px 16px; font-size:0.85rem; color:var(--muted); letter-spacing:0.03em; font-style:italic;">Sets folgen in Kürze</div>
+      </div>
+    </div>
+
+    <!-- Naughty Mischiefnight (neu) -->
+    <div class="category cat-rtb">
+      <button class="category-btn" onclick="toggleCat('mischiefnight', this)">
+        <span class="cat-icon">▶</span>
+        Naughty Mischiefnight
+        <span class="arrow">›</span>
+      </button>
+      <div class="set-list" id="cat-mischiefnight">
+        <div style="padding: 12px 16px; font-size:0.85rem; color:var(--muted); letter-spacing:0.03em; font-style:italic;">Sets folgen in Kürze</div>
+      </div>
+    </div>
+
+    <!-- Morning Grove Sunday (neu) -->
+    <div class="category cat-spontan">
+      <button class="category-btn" onclick="toggleCat('morninggrove', this)">
         <span class="cat-icon">▶</span>
         Morning Grove Sunday
         <span class="arrow">›</span>
       </button>
-      <div class="set-list" id="cat-morning-grove-sunday">
+      <div class="set-list" id="cat-morninggrove">
+        <div style="padding: 12px 16px; font-size:0.85rem; color:var(--muted); letter-spacing:0.03em; font-style:italic;">Sets folgen in Kürze</div>
       </div>
     </div>
+
   </aside>
 
   <!-- MAIN -->
@@ -1289,6 +1298,15 @@
 </div><!-- end #section-musik -->
 
 <div id="section-about" style="display:none;">
+
+  <!-- SUB-NAV -->
+  <div style="display:flex; gap:12px; padding: 24px 40px 0;">
+    <button class="stream-tab active" id="tab-bio" onclick="showAboutTab('bio', this)" style="font-family:'Orbitron',monospace; font-size:0.6rem; letter-spacing:0.2em; padding:8px 20px; border-radius:8px; background:rgba(255,45,122,0.1); border:1px solid rgba(255,45,122,0.3); color:var(--pink); cursor:pointer; transition:all 0.2s;">◈ Über Nyla</button>
+    <button class="stream-tab" id="tab-hardware" onclick="showAboutTab('hardware', this)" style="font-family:'Orbitron',monospace; font-size:0.6rem; letter-spacing:0.2em; padding:8px 20px; border-radius:8px; background:rgba(85,96,128,0.1); border:1px solid rgba(85,96,128,0.2); color:var(--muted); cursor:pointer; transition:all 0.2s;">◈ Hardware</button>
+  </div>
+
+  <!-- BIO TAB -->
+  <div id="abouttab-bio">
   <div class="about-hero">
 
     <!-- Portrait -->
@@ -1317,10 +1335,79 @@
         </p>
       </div>
 
+    </div><!-- end about-content -->
+  </div><!-- end about-hero -->
+  </div><!-- end abouttab-bio -->
+
+  <!-- HARDWARE TAB -->
+  <div id="abouttab-hardware" style="display:none; padding: 32px 40px 40px;">
+    <div class="home-section-label" style="margin-bottom:24px;">◈ Mein Setup</div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px;">
+
+      <!-- PC -->
+      <div style="background: rgba(15,15,15,0.95); border: 1px solid rgba(255,45,122,0.15); border-radius: 14px; padding: 24px;">
+        <div style="font-family:'Orbitron',monospace; font-size:0.6rem; letter-spacing:0.3em; color:var(--pink); text-transform:uppercase; margin-bottom:16px;">◈ PC</div>
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <div><div style="font-size:0.7rem; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase;">Tower</div><div style="font-size:0.95rem; color:var(--text);">Sharkoon M-25W</div></div>
+          <div><div style="font-size:0.7rem; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase;">Mainboard</div><div style="font-size:0.95rem; color:var(--text);">MSI x470 Gaming Pro Carbon</div></div>
+          <div><div style="font-size:0.7rem; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase;">CPU</div><div style="font-size:0.95rem; color:var(--text);">AMD Ryzen 7 1700x 3,4 GHz</div></div>
+          <div><div style="font-size:0.7rem; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase;">CPU-Kühler</div><div style="font-size:0.95rem; color:var(--text);">Alpenföhn Ben Nevis</div></div>
+          <div><div style="font-size:0.7rem; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase;">GPU</div><div style="font-size:0.95rem; color:var(--text);">MSI GeForce 1070Ti 8GB GDDR5</div></div>
+          <div><div style="font-size:0.7rem; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase;">RAM</div><div style="font-size:0.95rem; color:var(--text);">16GB Ballistix Sport DDR4 2400MHz (2×8GB)</div></div>
+          <div><div style="font-size:0.7rem; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase;">Netzteil</div><div style="font-size:0.95rem; color:var(--text);">Be Quiet Pure Power 10 500W</div></div>
+          <div><div style="font-size:0.7rem; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase;">SSD (C:)</div><div style="font-size:0.95rem; color:var(--text);">M.2 SSD 512GB</div></div>
+          <div><div style="font-size:0.7rem; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase;">HDD (D:)</div><div style="font-size:0.95rem; color:var(--text);">HDD 2TB</div></div>
+          <div><div style="font-size:0.7rem; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase;">SSD (E:)</div><div style="font-size:0.95rem; color:var(--text);">SSD 1TB</div></div>
+        </div>
+      </div>
+
+      <!-- Monitore -->
+      <div style="background: rgba(15,15,15,0.95); border: 1px solid rgba(255,45,122,0.15); border-radius: 14px; padding: 24px;">
+        <div style="font-family:'Orbitron',monospace; font-size:0.6rem; letter-spacing:0.3em; color:var(--pink); text-transform:uppercase; margin-bottom:16px;">◈ Monitore</div>
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <div><div style="font-size:0.7rem; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase;">Mitte</div><div style="font-size:0.95rem; color:var(--text);">Acer VG270 – 27" 75Hz</div></div>
+          <div><div style="font-size:0.7rem; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase;">Links</div><div style="font-size:0.95rem; color:var(--text);">Samsung S24D390 – 24" 60Hz</div></div>
+          <div><div style="font-size:0.7rem; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase;">Rechts</div><div style="font-size:0.95rem; color:var(--text);">LG Flatron E2241 – 22" 60Hz</div></div>
+          <div><div style="font-size:0.7rem; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase;">Racing</div><div style="font-size:0.95rem; color:var(--text);">Samsung Smart TV – 40" 60Hz</div></div>
+          <div><div style="font-size:0.7rem; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase;">VR</div><div style="font-size:0.95rem; color:var(--text);">Meta Quest 3</div></div>
+        </div>
+      </div>
+
+      <!-- Eingabegeräte -->
+      <div style="background: rgba(15,15,15,0.95); border: 1px solid rgba(255,45,122,0.15); border-radius: 14px; padding: 24px;">
+        <div style="font-family:'Orbitron',monospace; font-size:0.6rem; letter-spacing:0.3em; color:var(--pink); text-transform:uppercase; margin-bottom:16px;">◈ Eingabegeräte</div>
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <div><div style="font-size:0.7rem; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase;">Maus</div><div style="font-size:0.95rem; color:var(--text);">Logitech G203 Lightsync</div></div>
+          <div><div style="font-size:0.7rem; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase;">Tastatur</div><div style="font-size:0.95rem; color:var(--text);">Sharkoon Skiller Mech SGK 3</div></div>
+          <div><div style="font-size:0.7rem; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase;">Controller</div><div style="font-size:0.95rem; color:var(--text);">Xbox 360</div></div>
+          <div><div style="font-size:0.7rem; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase;">Tablet</div><div style="font-size:0.95rem; color:var(--text);">Wacom Intuos CTH-680</div></div>
+          <div><div style="font-size:0.7rem; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase;">Lenkrad</div><div style="font-size:0.95rem; color:var(--text);">Thrustmaster T300RS GT Edition</div></div>
+        </div>
+      </div>
+
+      <!-- Audio & DJ -->
+      <div style="background: rgba(15,15,15,0.95); border: 1px solid rgba(255,45,122,0.15); border-radius: 14px; padding: 24px;">
+        <div style="font-family:'Orbitron',monospace; font-size:0.6rem; letter-spacing:0.3em; color:var(--pink); text-transform:uppercase; margin-bottom:16px;">◈ Audio & DJ</div>
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <div><div style="font-size:0.7rem; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase;">Mikrofon</div><div style="font-size:0.95rem; color:var(--text);">Rode NT-USB</div></div>
+          <div><div style="font-size:0.7rem; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase;">Headset</div><div style="font-size:0.95rem; color:var(--text);">Soundcore Q30</div></div>
+          <div><div style="font-size:0.7rem; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase;">DJ Controller</div><div style="font-size:0.95rem; color:var(--text);">Pioneer DJ AlphaTheta DDJ-FLX2</div></div>
+          <div><div style="font-size:0.7rem; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase;">DJ Controller (mobil)</div><div style="font-size:0.95rem; color:var(--text);">Numark Mixstream Pro Go</div></div>
+        </div>
+      </div>
+
+      <!-- Video -->
+      <div style="background: rgba(15,15,15,0.95); border: 1px solid rgba(255,45,122,0.15); border-radius: 14px; padding: 24px;">
+        <div style="font-family:'Orbitron',monospace; font-size:0.6rem; letter-spacing:0.3em; color:var(--pink); text-transform:uppercase; margin-bottom:16px;">◈ Video</div>
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <div><div style="font-size:0.7rem; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase;">Kamera (Foto)</div><div style="font-size:0.95rem; color:var(--text);">Canon EOS 2000D</div></div>
+          <div><div style="font-size:0.7rem; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase;">Kamera (Stream)</div><div style="font-size:0.95rem; color:var(--text);">Trust Trino 720p</div></div>
+          <div><div style="font-size:0.7rem; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase;">Smartphone (IRL)</div><div style="font-size:0.95rem; color:var(--text);">Motorola Moto E22</div></div>
+        </div>
+      </div>
 
     </div>
-    </div><!-- end about-content -->
-  </div>
+  </div><!-- end abouttab-hardware -->
 
 </div><!-- end section-about -->
 
@@ -1416,79 +1503,19 @@
 
     <div class="home-section-label" style="margin-bottom:24px;">◈ VRChat</div>
 
-
-  </div>
-</div>
-
-<div id="section-hardware" style="display:none;">
-  <div style="padding: 40px;">
-    <div class="home-section-label" style="margin-bottom:24px;">◈ Mein Setup</div>
-
-    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px;">
-
-      <!-- PC -->
-      <div style="background: rgba(15,15,15,0.95); border: 1px solid rgba(255,45,122,0.15); border-radius: 14px; padding: 24px;">
-        <div style="font-family:'Orbitron',monospace; font-size:0.6rem; letter-spacing:0.3em; color:var(--pink); text-transform:uppercase; margin-bottom:16px;">◈ PC</div>
-        <div style="display:flex; flex-direction:column; gap:10px;">
-          <div><div style="font-size:0.7rem; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase;">Tower</div><div style="font-size:0.95rem; color:var(--text);">Sharkoon M-25W</div></div>
-          <div><div style="font-size:0.7rem; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase;">Mainboard</div><div style="font-size:0.95rem; color:var(--text);">MSI x470 Gaming Pro Carbon</div></div>
-          <div><div style="font-size:0.7rem; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase;">CPU</div><div style="font-size:0.95rem; color:var(--text);">AMD Ryzen 7 1700x 3,4 GHz</div></div>
-          <div><div style="font-size:0.7rem; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase;">CPU-Kühler</div><div style="font-size:0.95rem; color:var(--text);">Alpenföhn Ben Nevis</div></div>
-          <div><div style="font-size:0.7rem; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase;">GPU</div><div style="font-size:0.95rem; color:var(--text);">MSI GeForce 1070Ti 8GB GDDR5</div></div>
-          <div><div style="font-size:0.7rem; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase;">RAM</div><div style="font-size:0.95rem; color:var(--text);">16GB Ballistix Sport DDR4 2400MHz (2×8GB)</div></div>
-          <div><div style="font-size:0.7rem; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase;">Netzteil</div><div style="font-size:0.95rem; color:var(--text);">Be Quiet Pure Power 10 500W</div></div>
-          <div><div style="font-size:0.7rem; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase;">SSD (C:)</div><div style="font-size:0.95rem; color:var(--text);">M.2 SSD 512GB</div></div>
-          <div><div style="font-size:0.7rem; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase;">HDD (D:)</div><div style="font-size:0.95rem; color:var(--text);">HDD 2TB</div></div>
-          <div><div style="font-size:0.7rem; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase;">SSD (E:)</div><div style="font-size:0.95rem; color:var(--text);">SSD 1TB</div></div>
-        </div>
-      </div>
-
-      <!-- Monitore -->
-      <div style="background: rgba(15,15,15,0.95); border: 1px solid rgba(255,45,122,0.15); border-radius: 14px; padding: 24px;">
-        <div style="font-family:'Orbitron',monospace; font-size:0.6rem; letter-spacing:0.3em; color:var(--pink); text-transform:uppercase; margin-bottom:16px;">◈ Monitore</div>
-        <div style="display:flex; flex-direction:column; gap:10px;">
-          <div><div style="font-size:0.7rem; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase;">Mitte</div><div style="font-size:0.95rem; color:var(--text);">Acer VG270 – 27" 75Hz</div></div>
-          <div><div style="font-size:0.7rem; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase;">Links</div><div style="font-size:0.95rem; color:var(--text);">Samsung S24D390 – 24" 60Hz</div></div>
-          <div><div style="font-size:0.7rem; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase;">Rechts</div><div style="font-size:0.95rem; color:var(--text);">LG Flatron E2241 – 22" 60Hz</div></div>
-          <div><div style="font-size:0.7rem; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase;">Racing</div><div style="font-size:0.95rem; color:var(--text);">Samsung Smart TV – 40" 60Hz</div></div>
-          <div><div style="font-size:0.7rem; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase;">VR</div><div style="font-size:0.95rem; color:var(--text);">Meta Quest 3</div></div>
-        </div>
-      </div>
-
-      <!-- Eingabegeräte -->
-      <div style="background: rgba(15,15,15,0.95); border: 1px solid rgba(255,45,122,0.15); border-radius: 14px; padding: 24px;">
-        <div style="font-family:'Orbitron',monospace; font-size:0.6rem; letter-spacing:0.3em; color:var(--pink); text-transform:uppercase; margin-bottom:16px;">◈ Eingabegeräte</div>
-        <div style="display:flex; flex-direction:column; gap:10px;">
-          <div><div style="font-size:0.7rem; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase;">Maus</div><div style="font-size:0.95rem; color:var(--text);">Logitech G203 Lightsync</div></div>
-          <div><div style="font-size:0.7rem; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase;">Tastatur</div><div style="font-size:0.95rem; color:var(--text);">Sharkoon Skiller Mech SGK 3</div></div>
-          <div><div style="font-size:0.7rem; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase;">Controller</div><div style="font-size:0.95rem; color:var(--text);">Xbox 360</div></div>
-          <div><div style="font-size:0.7rem; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase;">Tablet</div><div style="font-size:0.95rem; color:var(--text);">Wacom Intuos CTH-680</div></div>
-          <div><div style="font-size:0.7rem; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase;">Lenkrad</div><div style="font-size:0.95rem; color:var(--text);">Thrustmaster T300RS GT Edition</div></div>
-        </div>
-      </div>
-
-      <!-- Audio & DJ -->
-      <div style="background: rgba(15,15,15,0.95); border: 1px solid rgba(255,45,122,0.15); border-radius: 14px; padding: 24px;">
-        <div style="font-family:'Orbitron',monospace; font-size:0.6rem; letter-spacing:0.3em; color:var(--pink); text-transform:uppercase; margin-bottom:16px;">◈ Audio & DJ</div>
-        <div style="display:flex; flex-direction:column; gap:10px;">
-          <div><div style="font-size:0.7rem; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase;">Mikrofon</div><div style="font-size:0.95rem; color:var(--text);">Rode NT-USB</div></div>
-          <div><div style="font-size:0.7rem; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase;">Headset</div><div style="font-size:0.95rem; color:var(--text);">Soundcore Q30</div></div>
-          <div><div style="font-size:0.7rem; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase;">DJ Controller</div><div style="font-size:0.95rem; color:var(--text);">Pioneer DJ AlphaTheta DDJ-FLX2</div></div>
-          <div><div style="font-size:0.7rem; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase;">DJ Controller (mobil)</div><div style="font-size:0.95rem; color:var(--text);">Numark Mixstream Pro Go</div></div>
-        </div>
-      </div>
-
-      <!-- Video -->
-      <div style="background: rgba(15,15,15,0.95); border: 1px solid rgba(255,45,122,0.15); border-radius: 14px; padding: 24px;">
-        <div style="font-family:'Orbitron',monospace; font-size:0.6rem; letter-spacing:0.3em; color:var(--pink); text-transform:uppercase; margin-bottom:16px;">◈ Video</div>
-        <div style="display:flex; flex-direction:column; gap:10px;">
-          <div><div style="font-size:0.7rem; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase;">Kamera (Foto)</div><div style="font-size:0.95rem; color:var(--text);">Canon EOS 2000D</div></div>
-          <div><div style="font-size:0.7rem; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase;">Kamera (Stream)</div><div style="font-size:0.95rem; color:var(--text);">Trust Trino 720p</div></div>
-          <div><div style="font-size:0.7rem; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase;">Smartphone (IRL)</div><div style="font-size:0.95rem; color:var(--text);">Motorola Moto E22</div></div>
-        </div>
-      </div>
-
+    <!-- Dream Café -->
+    <div style="background: rgba(15,15,15,0.95); border: 1px solid rgba(255,45,122,0.2); border-radius: 16px; padding: 32px; max-width: 700px; margin-bottom: 32px; position:relative; overflow:hidden;">
+      <div style="position:absolute; top:0; left:0; right:0; height:2px; background: linear-gradient(90deg, var(--pink), transparent);"></div>
+      <h2 style="font-family:'Orbitron',monospace; font-size:1.4rem; font-weight:700; color:var(--text); margin-bottom:12px;">Dream Café</h2>
+      <p style="font-size:0.95rem; color:var(--muted); line-height:1.75; margin-bottom:16px;">
+        Ein etwas anderes Café in VRChat. Dunkel, gemütlich, mit Graffiti an den Wänden, einer Bar und einem DJ-Bereich.
+        Café, Cocktails und kalte Drinks gibt's an der Bar – RP ist willkommen.
+        Ein Treffpunkt für Freunde, der sich nach mehr anfühlt.
+      </p>
+      <div style="font-family:'Orbitron',monospace; font-size:0.55rem; letter-spacing:0.2em; color:var(--muted); text-transform:uppercase; margin-bottom: 12px;">World-Link</div>
+      <a href="https://vrchat.com/home/launch?worldId=wrld_ad236d17-a734-4570-9661-bc1174b0c2d3" target="_blank" style="display:inline-flex; align-items:center; gap:8px; background:rgba(255,45,122,0.08); border:1px solid rgba(255,45,122,0.3); color:var(--pink); font-family:'Rajdhani',sans-serif; font-size:0.9rem; font-weight:600; padding:10px 20px; border-radius:8px; text-decoration:none; letter-spacing:0.05em;">▶ In VRChat öffnen</a>
     </div>
+
   </div>
 </div>
 
@@ -1501,10 +1528,22 @@
     document.getElementById('section-streams').style.display = id === 'streams' ? 'block' : 'none';
     document.getElementById('section-about').style.display = id === 'about' ? 'block' : 'none';
     document.getElementById('section-vrchat').style.display = id === 'vrchat' ? 'block' : 'none';
-    document.getElementById('section-hardware').style.display = id === 'hardware' ? 'block' : 'none';
     document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
     if (btn && btn.classList.contains('nav-btn')) btn.classList.add('active');
     if (id === 'streams') checkStreamStatus();
+  }
+
+  function showAboutTab(tab, btn) {
+    document.getElementById('abouttab-bio').style.display = tab === 'bio' ? 'block' : 'none';
+    document.getElementById('abouttab-hardware').style.display = tab === 'hardware' ? 'block' : 'none';
+    document.querySelectorAll('#section-about .stream-tab').forEach(b => {
+      b.style.background = 'rgba(85,96,128,0.1)';
+      b.style.borderColor = 'rgba(85,96,128,0.2)';
+      b.style.color = 'var(--muted)';
+    });
+    btn.style.background = 'rgba(255,45,122,0.1)';
+    btn.style.borderColor = 'rgba(255,45,122,0.3)';
+    btn.style.color = 'var(--pink)';
   }
 
   function showStreamTab(tab, btn) {
