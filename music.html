@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DJ Nyla – Dark Beats. Dirty Vibes.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #080808;
+      --bg2: #0f0f0f;
+      --bg3: #141414;
+      --pink: #ff2d7a;
+      --red: #cc0044;
+      --text: #f0f0f0;
+      --muted: #666;
+      --sidebar-w: 260px;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:'Rajdhani',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; }
+
+    /* HEADER */
+    header { display:flex; align-items:center; padding:16px 32px; background:rgba(8,8,8,0.95); border-bottom:1px solid rgba(255,45,122,0.15); position:sticky; top:0; z-index:100; gap:16px; backdrop-filter:blur(10px); }
+    .back-btn { display:flex; align-items:center; gap:6px; font-family:'Orbitron',monospace; font-size:0.55rem; letter-spacing:0.2em; color:var(--muted); text-decoration:none; padding:6px 12px; border:1px solid rgba(255,255,255,0.1); border-radius:6px; transition:all 0.2s; }
+    .back-btn:hover { color:var(--pink); border-color:rgba(255,45,122,0.3); }
+    .header-logo { display:flex; align-items:center; gap:10px; }
+    .header-logo img { height:36px; width:36px; object-fit:contain; filter:drop-shadow(0 0 6px rgba(255,45,122,0.5)); }
+    h1 { font-family:'Orbitron',monospace; font-size:1.1rem; font-weight:900; background:linear-gradient(90deg, var(--pink), #ff6b9d); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; letter-spacing:0.05em; }
+    .subtitle { font-size:0.75rem; color:var(--muted); letter-spacing:0.15em; margin-left:2px; }
+    .main-nav { margin-left:auto; display:flex; gap:8px; }
+    .nav-btn { background:none; border:1px solid rgba(255,45,122,0.2); color:var(--muted); font-family:'Rajdhani',sans-serif; font-size:0.9rem; font-weight:600; padding:6px 16px; border-radius:6px; cursor:pointer; transition:all 0.2s; letter-spacing:0.05em; }
+    .nav-btn:hover { color:var(--pink); border-color:var(--pink); background:rgba(255,45,122,0.05); }
+    .nav-btn.active { color:var(--pink); border-color:var(--pink); background:rgba(255,45,122,0.08); }
+    .nav-dropdown { position:relative; }
+    .nav-dropdown-menu { display:none; position:absolute; top:calc(100% + 4px); left:50%; transform:translateX(-50%); background:rgba(13,8,10,0.98); border:1px solid rgba(255,45,122,0.2); border-radius:8px; overflow:hidden; min-width:130px; z-index:100; box-shadow:0 8px 32px rgba(0,0,0,0.4); padding-top:8px; }
+    .nav-dropdown::after { content:''; position:absolute; top:100%; left:0; right:0; height:12px; }
+    .nav-dropdown:hover .nav-dropdown-menu { display:block; }
+    .nav-dropdown-item { display:block; width:100%; padding:10px 18px; background:none; border:none; color:var(--muted); font-family:'Rajdhani',sans-serif; font-size:0.9rem; font-weight:600; letter-spacing:0.05em; cursor:pointer; text-align:left; transition:all 0.15s; white-space:nowrap; }
+    .nav-dropdown-item:hover { color:var(--pink); background:rgba(255,45,122,0.06); }
+
+    /* SECTIONS */
+    #section-home,#section-musik,#section-streams,#section-clips,#section-vrchat,#section-about { display:none; }
+    #section-home { display:block; }
+
+    /* HOME */
+    .hero { position:relative; overflow:hidden; min-height:340px; display:flex; flex-direction:column; align-items:center; justify-content:center; background:radial-gradient(ellipse at 50% 0%, rgba(255,45,122,0.12) 0%, transparent 70%); }
+    .hero-img-wrap { width:100%; max-height:280px; overflow:hidden; display:flex; justify-content:center; }
+    .hero-img { width:100%; max-width:900px; height:280px; object-fit:cover; object-position:center 20%; opacity:0.7; }
+    .hero-btns { display:flex; gap:12px; padding:20px 0 8px; }
+    .home-section-label { font-family:'Orbitron',monospace; font-size:0.55rem; letter-spacing:0.3em; color:var(--muted); text-transform:uppercase; padding:0 40px 10px; opacity:0.6; }
+    .home-cards { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; padding:0 40px 32px; }
+    .home-card { background:rgba(15,10,12,0.95); border-radius:12px; padding:20px; border:1px solid rgba(255,45,122,0.08); }
+    .home-card-cyan { border-color:rgba(255,45,122,0.12); }
+    .home-card-pink { border-color:rgba(200,0,68,0.12); }
+    .home-card-purple { border-color:rgba(150,0,50,0.12); }
+    .home-card-day { font-family:'Orbitron',monospace; font-size:0.6rem; letter-spacing:0.25em; color:var(--pink); margin-bottom:8px; }
+    .home-card-name { font-size:1rem; font-weight:600; color:var(--text); margin-bottom:4px; }
+    .home-card-time { font-size:0.85rem; color:var(--muted); }
+
+    /* HARDWARE ON HOME */
+    .hardware-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:20px; padding:0 40px 40px; }
+    .hw-card { background:rgba(15,10,12,0.95); border:1px solid rgba(255,45,122,0.12); border-radius:14px; padding:24px; }
+    .hw-card-title { font-family:'Orbitron',monospace; font-size:0.6rem; letter-spacing:0.3em; color:var(--pink); text-transform:uppercase; margin-bottom:16px; }
+    .hw-item { margin-bottom:10px; }
+    .hw-key { font-size:0.7rem; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase; }
+    .hw-val { font-size:0.95rem; color:var(--text); }
+
+    /* MUSIK */
+    .layout { display:flex; min-height:calc(100vh - 73px); }
+    .sidebar { width:var(--sidebar-w); min-width:var(--sidebar-w); background:var(--bg2); border-right:1px solid rgba(255,45,122,0.1); padding:24px 0; overflow-y:auto; }
+    .sidebar-label { font-family:'Orbitron',monospace; font-size:0.55rem; letter-spacing:0.3em; color:var(--muted); text-transform:uppercase; padding:0 20px 12px; }
+    .category { border-bottom:1px solid rgba(255,45,122,0.06); }
+    .category-btn { width:100%; background:none; border:none; color:var(--muted); font-family:'Rajdhani',sans-serif; font-size:0.95rem; font-weight:600; padding:12px 20px; cursor:pointer; display:flex; align-items:center; gap:10px; text-align:left; transition:color 0.2s; letter-spacing:0.03em; }
+    .category-btn:hover { color:var(--text); }
+    .category-btn.open { color:var(--pink); }
+    .cat-icon { font-size:0.7rem; color:var(--pink); }
+    .arrow { margin-left:auto; transition:transform 0.2s; }
+    .category-btn.open .arrow { transform:rotate(90deg); }
+    .set-list { display:none; background:rgba(0,0,0,0.2); }
+    .set-list.open { display:block; }
+    .set-item { padding:8px 20px 8px 36px; font-size:0.85rem; color:var(--muted); cursor:pointer; transition:all 0.15s; display:flex; align-items:center; gap:8px; letter-spacing:0.02em; }
+    .set-item:hover { color:var(--text); background:rgba(255,45,122,0.04); }
+    .set-item.playing { color:var(--pink); }
+    .play-dot { width:6px; height:6px; border-radius:50%; background:var(--pink); flex-shrink:0; opacity:0; }
+    .set-item.playing .play-dot { opacity:1; }
+    main { flex:1; padding:32px 40px; overflow-y:auto; }
+    .np-box { background:var(--bg2); border:1px solid rgba(255,45,122,0.15); border-radius:12px; padding:24px; margin-bottom:24px; position:relative; overflow:hidden; }
+    .np-box::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--pink),var(--red),transparent); }
+    .np-label { font-family:'Orbitron',monospace; font-size:0.55rem; letter-spacing:0.3em; color:var(--pink); margin-bottom:8px; }
+    .np-title { font-size:1.2rem; font-weight:700; color:var(--text); margin-bottom:4px; }
+    .np-sub { font-size:0.85rem; color:var(--muted); }
+    #mixcloud-container { display:none; margin-top:16px; border-radius:8px; overflow:hidden; }
+    #mixcloud-iframe { width:100%; height:120px; border:none; display:block; }
+
+    /* STREAMS */
+    .stream-tab { font-family:'Orbitron',monospace; font-size:0.6rem; letter-spacing:0.2em; padding:8px 20px; border-radius:8px; cursor:pointer; transition:all 0.2s; }
+    .stream-cards { display:flex; gap:32px; padding:28px 40px 0; flex-wrap:wrap; }
+    .stream-card { flex:1; min-width:280px; max-width:520px; background:rgba(15,10,12,0.95); border-radius:16px; overflow:hidden; position:relative; }
+    .stream-card-gaming { border:1px solid rgba(157,0,255,0.2); }
+    .stream-card-musik { border:1px solid rgba(255,45,122,0.2); }
+    .stream-card-top { position:absolute; top:0; left:0; right:0; height:2px; }
+    .stream-card-gaming .stream-card-top { background:linear-gradient(90deg,#9d00ff,transparent); }
+    .stream-card-musik .stream-card-top { background:linear-gradient(90deg,var(--pink),transparent); }
+    .stream-card-header { padding:20px 24px 16px; display:flex; align-items:center; justify-content:space-between; }
+    .stream-card-label { font-family:'Orbitron',monospace; font-size:0.55rem; letter-spacing:0.3em; text-transform:uppercase; margin-bottom:4px; }
+    .stream-card-gaming .stream-card-label { color:#9d00ff; }
+    .stream-card-musik .stream-card-label { color:var(--pink); }
+    .stream-card-name { font-family:'Orbitron',monospace; font-size:0.95rem; font-weight:700; color:var(--text); }
+    .status-badge { font-family:'Orbitron',monospace; font-size:0.5rem; letter-spacing:0.2em; padding:4px 10px; border-radius:20px; background:rgba(85,96,128,0.2); border:1px solid rgba(85,96,128,0.3); color:var(--muted); text-transform:uppercase; }
+    .stream-preview { position:relative; width:100%; aspect-ratio:16/9; background:#000; overflow:hidden; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:8px; }
+    .stream-preview-bg-gaming { background:linear-gradient(135deg,rgba(157,0,255,0.06),rgba(8,8,8,0.95)); }
+    .stream-preview-bg-musik { background:linear-gradient(135deg,rgba(255,45,122,0.06),rgba(8,8,8,0.95)); }
+    .stream-preview-text { font-family:'Orbitron',monospace; font-size:0.6rem; letter-spacing:0.3em; color:var(--muted); text-transform:uppercase; position:relative; z-index:1; }
+    .stream-footer { padding:16px 24px; }
+    .stream-link { display:inline-flex; align-items:center; gap:8px; font-family:'Rajdhani',sans-serif; font-size:0.9rem; font-weight:600; padding:8px 18px; border-radius:8px; text-decoration:none; letter-spacing:0.05em; transition:all 0.2s; }
+    .stream-link-gaming { background:rgba(157,0,255,0.1); border:1px solid rgba(157,0,255,0.35); color:#9d00ff; }
+    .stream-link-musik { background:rgba(255,45,122,0.08); border:1px solid rgba(255,45,122,0.3); color:var(--pink); }
+    .info-box { max-width:480px; margin:32px auto; background:rgba(15,10,12,0.95); border:1px solid rgba(88,101,242,0.2); border-radius:16px; padding:32px; text-align:center; position:relative; overflow:hidden; }
+    .info-box::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,transparent,rgba(88,101,242,0.6),transparent); }
+
+    /* CLIPS */
+    #clips-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:20px; }
+
+    /* VRCHAT */
+    .vrchat-card { background:rgba(15,10,12,0.95); border:1px solid rgba(255,45,122,0.2); border-radius:16px; padding:32px; max-width:700px; position:relative; overflow:hidden; }
+    .vrchat-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--pink),transparent); }
+
+    /* ABOUT */
+    .about-hero { display:grid; grid-template-columns:360px 1fr; min-height:calc(100vh - 140px); }
+    .about-img-panel { position:relative; overflow:hidden; background:#000; }
+    .about-img-panel img { width:100%; height:100%; object-fit:cover; object-position:top center; display:block; opacity:0.9; }
+    .about-img-panel::after { content:''; position:absolute; top:0; right:0; width:2px; height:100%; background:linear-gradient(180deg,transparent 0%,var(--pink) 20%,var(--red) 50%,var(--pink) 80%,transparent 100%); box-shadow:0 0 24px var(--pink); }
+    .about-content { padding:48px 56px; display:flex; flex-direction:column; justify-content:center; background:linear-gradient(135deg,rgba(13,8,10,0.98),rgba(8,8,8,0.95)); }
+    .about-bio-block p { font-size:1.05rem; line-height:1.75; color:rgba(240,240,240,0.75); margin-bottom:14px; }
+    .about-bio-block strong { color:var(--text); }
+    .hl-pink { color:var(--pink); font-weight:600; }
+    .about-sub-tabs { display:flex; gap:12px; padding:20px 40px 0; }
+
+    /* MUSIK section styling */
+    .flyer-form-wrap { padding:0 40px; display:flex; gap:32px; align-items:flex-start; flex-wrap:wrap; margin-bottom:32px; }
+    .birthday-card { flex:1; min-width:280px; background:linear-gradient(135deg,rgba(13,8,10,0.95),rgba(17,10,14,0.95)); border:1px solid rgba(255,45,122,0.2); border-radius:16px; padding:28px 32px; position:relative; overflow:hidden; }
+    .birthday-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--pink),var(--red),transparent); }
+
+    footer { text-align:center; padding:24px; font-family:'Orbitron',monospace; font-size:0.5rem; letter-spacing:0.3em; color:rgba(255,255,255,0.1); border-top:1px solid rgba(255,45,122,0.08); }
+
+    @media(max-width:900px){.home-cards{grid-template-columns:repeat(2,1fr);}.about-hero{grid-template-columns:1fr;}.stream-cards{flex-direction:column;}.layout{flex-direction:column;}.sidebar{width:100%;min-width:unset;}}
+  </style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="back-btn">← Zurück</a>
+  <div class="header-logo">
+    <img src="logo.png" alt="DJ Nyla Logo">
+    <div>
+      <h1>DJ Nyla</h1>
+      <span class="subtitle">// Dark Beats. Dirty Vibes.</span>
+    </div>
+  </div>
+  <nav class="main-nav">
+    <button class="nav-btn active" onclick="showSection('home',this)">Home</button>
+    <button class="nav-btn" onclick="showSection('musik',this)">Musik</button>
+    <button class="nav-btn" onclick="showSection('streams',this)">Streams</button>
+    <button class="nav-btn" onclick="showSection('vrchat',this)">VRChat</button>
+    <button class="nav-btn" onclick="showSection('about',this)">Über Nyla</button>
+  </nav>
+</header>
+
+<!-- HOME -->
+<div id="section-home">
+  <div class="hero">
+    <div class="hero-img-wrap">
+      <img src="hero.png" alt="DJ Nyla" class="hero-img">
+    </div>
+    <div class="hero-btns">
+      <button class="nav-btn" onclick="showSection('musik',document.querySelectorAll('.nav-btn')[1])">Musik hören</button>
+      <button class="nav-btn" onclick="showSection('streams',document.querySelectorAll('.nav-btn')[2])">Streams schauen</button>
+    </div>
+  </div>
+
+  <div class="home-section-label">◈ Musik Streams</div>
+  <div class="home-cards">
+    <div class="home-card home-card-cyan">
+      <div class="home-card-day">DIENSTAG</div>
+      <div class="home-card-name">Tuesday Tunes</div>
+      <div class="home-card-time">20:00 – 21:00 Uhr</div>
+    </div>
+    <div class="home-card home-card-pink">
+      <div class="home-card-day" style="color:var(--red)">FREITAG</div>
+      <div class="home-card-name">Naughty Mischiefnight</div>
+      <div class="home-card-time">20:00 – 21:00 Uhr</div>
+    </div>
+    <div class="home-card home-card-purple">
+      <div class="home-card-day" style="color:#ff6b9d">SONNTAG</div>
+      <div class="home-card-name">Morning Grove Sunday</div>
+      <div class="home-card-time">11:00 – 12:00 Uhr</div>
+    </div>
+    <div class="home-card" style="border-color:rgba(255,45,122,0.08)">
+      <div class="home-card-day">SPONTAN</div>
+      <div class="home-card-name">Spontan Streams</div>
+      <div class="home-card-time">Wenn's juckt. Wenn die Vibes stimmen.</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- MUSIK -->
+<div id="section-musik" style="display:none;">
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="sidebar-label">Kategorien</div>
+      <div class="category"><button class="category-btn" onclick="toggleCat('dance',this)"><span class="cat-icon">▶</span>Dance Dienstag<span class="arrow">›</span></button>
+        <div class="set-list" id="cat-dance">
+          <div class="set-item" onclick="loadMixcloud(this,'Dance Dienstag','https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Fdance-dienstag-mix-1-dj_nyla%2F')"><span class="play-dot"></span>Dance Dienstag Mix #1</div>
+          <div class="set-item" onclick="loadMixcloud(this,'Dance Dienstag','https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Fdance-dienstag-mix-2-dj_nyla%2F')"><span class="play-dot"></span>Dance Dienstag Mix #2</div>
+          <div class="set-item" onclick="loadMixcloud(this,'Dance Dienstag','https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Fdance-dienstag-mix-3-dj_nyla%2F')"><span class="play-dot"></span>Dance Dienstag Mix #3</div>
+          <div class="set-item" onclick="loadMixcloud(this,'Dance Dienstag','https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Fdance-dienstag-mix-4-dj_nyla%2F')"><span class="play-dot"></span>Dance Dienstag Mix #4</div>
+          <div class="set-item" onclick="loadMixcloud(this,'Dance Dienstag','https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Fdance-dienstag-mix-5-dj_nyla%2F')"><span class="play-dot"></span>Dance Dienstag Mix #5</div>
+          <div class="set-item" onclick="loadMixcloud(this,'Dance Dienstag','https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Fdance-dienstag-mix-6-dj_nyla%2F')"><span class="play-dot"></span>Dance Dienstag Mix #6</div>
+          <div class="set-item" onclick="loadMixcloud(this,'Dance Dienstag','https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Fdance-dienstag-mix-7-dj_nyla%2F')"><span class="play-dot"></span>Dance Dienstag Mix #7</div>
+          <div class="set-item" onclick="loadMixcloud(this,'Dance Dienstag','https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Fdance-dienstag-mix-8-dj_nyla%2F')"><span class="play-dot"></span>Dance Dienstag Mix #8</div>
+          <div class="set-item" onclick="loadMixcloud(this,'Dance Dienstag','https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Fdance-dienstag-mix-9-dj_nyla%2F')"><span class="play-dot"></span>Dance Dienstag Mix #9</div>
+          <div class="set-item" onclick="loadMixcloud(this,'Dance Dienstag','https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Fdance-dienstag-mix-10-dj_nyla%2F')"><span class="play-dot"></span>Dance Dienstag Mix #10</div>
+          <div class="set-item" onclick="loadMixcloud(this,'Dance Dienstag','https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Fdance-dienstag-mix-11-dj_nyla%2F')"><span class="play-dot"></span>Dance Dienstag Mix #11</div>
+          <div class="set-item" onclick="loadMixcloud(this,'Dance Dienstag','https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Fdance-dienstag-mix-12-dj_nyla%2F')"><span class="play-dot"></span>Dance Dienstag Mix #12</div>
+          <div class="set-item" onclick="loadMixcloud(this,'Dance Dienstag','https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Fdance-dienstag-mix-13-dj_nyla%2F')"><span class="play-dot"></span>Dance Dienstag Mix #13</div>
+          <div class="set-item" onclick="loadMixcloud(this,'Dance Dienstag','https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Fdance-dienstag-mix-14-dj_nyla%2F')"><span class="play-dot"></span>Dance Dienstag Mix #14</div>
+          <div class="set-item" onclick="loadMixcloud(this,'Dance Dienstag','https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Fdance-dienstag-mix-15-dj_nyla%2F')"><span class="play-dot"></span>Dance Dienstag Mix #15</div>
+          <div class="set-item" onclick="loadMixcloud(this,'Dance Dienstag','https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Fdance-dienstag-mix-16-dj_nyla%2F')"><span class="play-dot"></span>Dance Dienstag Mix #16</div>
+          <div class="set-item" onclick="loadMixcloud(this,'Dance Dienstag','https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Fdance-dienstag-mix-17-dj_nyla%2F')"><span class="play-dot"></span>Dance Dienstag Mix #17</div>
+          <div class="set-item" onclick="loadMixcloud(this,'Dance Dienstag','https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Fdance-dienstag-mix-18-dj_nyla%2F')"><span class="play-dot"></span>Dance Dienstag Mix #18</div>
+          <div class="set-item" onclick="loadMixcloud(this,'Dance Dienstag','https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Fdance-dienstag-mix-19-dj_nyla%2F')"><span class="play-dot"></span>Dance Dienstag Mix #19</div>
+          <div class="set-item" onclick="loadMixcloud(this,'Dance Dienstag','https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Fdance-dienstag-mix-20-dj_nyla%2F')"><span class="play-dot"></span>Dance Dienstag Mix #20</div>
+          <div class="set-item" onclick="loadMixcloud(this,'Dance Dienstag','https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Fdance-dienstag-mix-21-dj_fluffypaw_nya%2F')"><span class="play-dot"></span>Dance Dienstag Mix #21</div>
+          <div class="set-item" onclick="loadMixcloud(this,'Dance Dienstag','https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Fdance-dienstag-mix-22-dj_fluffypaw_nya%2F')"><span class="play-dot"></span>Dance Dienstag Mix #22</div>
+          <div class="set-item" onclick="loadMixcloud(this,'Dance Dienstag','https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Fdance-dienstag-mix-23-dj_fluffypaw_nya%2F')"><span class="play-dot"></span>Dance Dienstag Mix #23</div>
+          <div class="set-item" onclick="loadMixcloud(this,'Dance Dienstag','https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Fdance-dienstag-mix-24-dj_fluffypaw_nya%2F')"><span class="play-dot"></span>Dance Dienstag Mix #24</div>
+        </div>
+      </div>
+      <div class="category"><button class="category-btn" onclick="toggleCat('rtb',this)"><span class="cat-icon">▶</span>Rock the Bar<span class="arrow">›</span></button>
+        <div class="set-list" id="cat-rtb">
+          <div class="set-item" onclick="loadMixcloud(this,'Rock the Bar','https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-1-dj_nyla%2F')"><span class="play-dot"></span>Rock the Bar Mix #1</div>
+          <div class="set-item" onclick="loadMixcloud(this,'Rock the Bar','https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-2-dj_nyla%2F')"><span class="play-dot"></span>Rock the Bar Mix #2</div>
+          <div class="set-item" onclick="loadMixcloud(this,'Rock the Bar','https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-3-dj_nyla%2F')"><span class="play-dot"></span>Rock the Bar Mix #3</div>
+          <div class="set-item" onclick="loadMixcloud(this,'Rock the Bar','https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-4-dj_nyla%2F')"><span class="play-dot"></span>Rock the Bar Mix #4</div>
+          <div class="set-item" onclick="loadMixcloud(this,'Rock the Bar','https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-5-dj_nyla%2F')"><span class="play-dot"></span>Rock the Bar Mix #5</div>
+          <div class="set-item" onclick="loadMixcloud(this,'Rock the Bar','https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-6-dj_nyla%2F')"><span class="play-dot"></span>Rock the Bar Mix #6</div>
+          <div class="set-item" onclick="loadMixcloud(this,'Rock the Bar','https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-7-dj_nyla%2F')"><span class="play-dot"></span>Rock the Bar Mix #7</div>
+          <div class="set-item" onclick="loadMixcloud(this,'Rock the Bar','https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-8-dj_nyla%2F')"><span class="play-dot"></span>Rock the Bar Mix #8</div>
+          <div class="set-item" onclick="loadMixcloud(this,'Rock the Bar','https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-9-dj_nyla%2F')"><span class="play-dot"></span>Rock the Bar Mix #9</div>
+          <div class="set-item" onclick="loadMixcloud(this,'Rock the Bar','https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-10-dj_nyla%2F')"><span class="play-dot"></span>Rock the Bar Mix #10</div>
+          <div class="set-item" onclick="loadMixcloud(this,'Rock the Bar','https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-11-dj_nyla%2F')"><span class="play-dot"></span>Rock the Bar Mix #11</div>
+          <div class="set-item" onclick="loadMixcloud(this,'Rock the Bar','https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-12-dj_nyla%2F')"><span class="play-dot"></span>Rock the Bar Mix #12</div>
+          <div class="set-item" onclick="loadMixcloud(this,'Rock the Bar','https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-13-dj_nyla%2F')"><span class="play-dot"></span>Rock the Bar Mix #13</div>
+          <div class="set-item" onclick="loadMixcloud(this,'Rock the Bar','https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-14-dj_nyla%2F')"><span class="play-dot"></span>Rock the Bar Mix #14</div>
+          <div class="set-item" onclick="loadMixcloud(this,'Rock the Bar','https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-15-dj_nyla%2F')"><span class="play-dot"></span>Rock the Bar Mix #15</div>
+          <div class="set-item" onclick="loadMixcloud(this,'Rock the Bar','https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-16-dj_nyla%2F')"><span class="play-dot"></span>Rock the Bar Mix #16</div>
+          <div class="set-item" onclick="loadMixcloud(this,'Rock the Bar','https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-17-dj_nyla%2F')"><span class="play-dot"></span>Rock the Bar Mix #17</div>
+          <div class="set-item" onclick="loadMixcloud(this,'Rock the Bar','https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-18-dj_nyla%2F')"><span class="play-dot"></span>Rock the Bar Mix #18</div>
+          <div class="set-item" onclick="loadMixcloud(this,'Rock the Bar','https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-19-dj_nyla-mp3%2F')"><span class="play-dot"></span>Rock the Bar Mix #19</div>
+          <div class="set-item" onclick="loadMixcloud(this,'Rock the Bar','https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-20-dj_fluffypaw_nya%2F')"><span class="play-dot"></span>Rock the Bar Mix #20</div>
+          <div class="set-item" onclick="loadMixcloud(this,'Rock the Bar','https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-21-dj_fluffypaw_nya%2F')"><span class="play-dot"></span>Rock the Bar Mix #21</div>
+          <div class="set-item" onclick="loadMixcloud(this,'Rock the Bar','https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Frtb-mix-22-dj_fluffypaw_nya%2F')"><span class="play-dot"></span>Rock the Bar Mix #22</div>
+        </div>
+      </div>
+      <div class="category"><button class="category-btn" onclick="toggleCat('spontan',this)"><span class="cat-icon">▶</span>Spontanität<span class="arrow">›</span></button>
+        <div class="set-list" id="cat-spontan">
+          <div class="set-item" onclick="loadMixcloud(this,'Spontanität','https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Fspontanit%C3%A4t-mix-1-dj_nyla%2F')"><span class="play-dot"></span>Spontanität Mix #1</div>
+          <div class="set-item" onclick="loadMixcloud(this,'Spontanität','https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Fspontanit%C3%A4t-mix-2-dj_nyla%2F')"><span class="play-dot"></span>Spontanität Mix #2</div>
+          <div class="set-item" onclick="loadMixcloud(this,'Spontanität','https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Fspontanit%C3%A4t-mix-3-dj_nyla%2F')"><span class="play-dot"></span>Spontanität Mix #3</div>
+          <div class="set-item" onclick="loadMixcloud(this,'Spontanität','https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Fspontanit%C3%A4t-mix-4-dj_nyla%2F')"><span class="play-dot"></span>Spontanität Mix #4</div>
+          <div class="set-item" onclick="loadMixcloud(this,'Spontanität','https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Fspontanit%C3%A4t-mix-5-dj_nyla%2F')"><span class="play-dot"></span>Spontanität Mix #5</div>
+          <div class="set-item" onclick="loadMixcloud(this,'Spontanität','https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Fspontanit%C3%A4t-mix-6-dj_nyla%2F')"><span class="play-dot"></span>Spontanität Mix #6</div>
+          <div class="set-item" onclick="loadMixcloud(this,'Spontanität','https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Fspontanit%C3%A4t-mix-7-dj_nyla%2F')"><span class="play-dot"></span>Spontanität Mix #7</div>
+          <div class="set-item" onclick="loadMixcloud(this,'Spontanität','https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Fspontanit%C3%A4t-mix-8-dj_nyla%2F')"><span class="play-dot"></span>Spontanität Mix #8</div>
+          <div class="set-item" onclick="loadMixcloud(this,'Spontanität','https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Fspontanit%C3%A4t-mix-9-dj_nyla%2F')"><span class="play-dot"></span>Spontanität Mix #9</div>
+          <div class="set-item" onclick="loadMixcloud(this,'Spontanität','https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Fspontanit%C3%A4t-mix-10-dj_nyla%2F')"><span class="play-dot"></span>Spontanität Mix #10</div>
+          <div class="set-item" onclick="loadMixcloud(this,'Spontanität','https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Fspontanit%C3%A4t-mix-11-dj_nyla%2F')"><span class="play-dot"></span>Spontanität Mix #11</div>
+          <div class="set-item" onclick="loadMixcloud(this,'Spontanität','https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Fspontanit%C3%A4t-mix-12-dj_nyla%2F')"><span class="play-dot"></span>Spontanität Mix #12</div>
+          <div class="set-item" onclick="loadMixcloud(this,'Spontanität','https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Fspontanit%C3%A4t-mix-13-dj_nyla%2F')"><span class="play-dot"></span>Spontanität Mix #13</div>
+          <div class="set-item" onclick="loadMixcloud(this,'Spontanität','https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Fspontanit%C3%A4t-mix-14-dj_nyla%2F')"><span class="play-dot"></span>Spontanität Mix #14</div>
+          <div class="set-item" onclick="loadMixcloud(this,'Spontanität','https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Fspontanit%C3%A4t-mix-15-dj_nyla%2F')"><span class="play-dot"></span>Spontanität Mix #15</div>
+          <div class="set-item" onclick="loadMixcloud(this,'Spontanität','https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Fspontanit%C3%A4t-mix-16-dj_nyla%2F')"><span class="play-dot"></span>Spontanität Mix #16</div>
+          <div class="set-item" onclick="loadMixcloud(this,'Spontanität','https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Fspontanit%C3%A4t-mix-17-dj_nyla%2F')"><span class="play-dot"></span>Spontanität Mix #17</div>
+          <div class="set-item" onclick="loadMixcloud(this,'Spontanität','https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Fspontanit%C3%A4t-mix-18-dj_nyla%2F')"><span class="play-dot"></span>Spontanität Mix #18</div>
+          <div class="set-item" onclick="loadMixcloud(this,'Spontanität','https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Fspontanit%C3%A4t-mix-19-dj_fluffypaw_nya%2F')"><span class="play-dot"></span>Spontanität Mix #19</div>
+          <div class="set-item" onclick="loadMixcloud(this,'Spontanität','https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Fspontanit%C3%A4t-mix-20-dj_fluffypaw_nya%2F')"><span class="play-dot"></span>Spontanität Mix #20</div>
+          <div class="set-item" onclick="loadMixcloud(this,'Spontanität','https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FFluffyPaw%2Fspontanit%C3%A4t-mix-21-dj_fluffypaw_nya%2F')"><span class="play-dot"></span>Spontanität Mix #21</div>
+        </div>
+      </div>
+      <div class="category"><button class="category-btn" onclick="toggleCat('tuesdaytunes',this)"><span class="cat-icon">▶</span>Tuesday Tunes<span class="arrow">›</span></button>
+        <div class="set-list" id="cat-tuesdaytunes"><div style="padding:12px 16px;font-size:0.85rem;color:var(--muted);font-style:italic;">Sets folgen in Kürze</div></div>
+      </div>
+      <div class="category"><button class="category-btn" onclick="toggleCat('mischiefnight',this)"><span class="cat-icon">▶</span>Naughty Mischiefnight<span class="arrow">›</span></button>
+        <div class="set-list" id="cat-mischiefnight"><div style="padding:12px 16px;font-size:0.85rem;color:var(--muted);font-style:italic;">Sets folgen in Kürze</div></div>
+      </div>
+      <div class="category"><button class="category-btn" onclick="toggleCat('morninggrove',this)"><span class="cat-icon">▶</span>Morning Grove Sunday<span class="arrow">›</span></button>
+        <div class="set-list" id="cat-morninggrove"><div style="padding:12px 16px;font-size:0.85rem;color:var(--muted);font-style:italic;">Sets folgen in Kürze</div></div>
+      </div>
+    </aside>
+    <main>
+      <div class="np-box">
+        <div class="np-label">◈ Now Playing</div>
+        <div class="np-title" id="np-title">Kein Set ausgewählt</div>
+        <div class="np-sub" id="np-cat">← Wähle ein Set aus der Seitenleiste</div>
+        <div id="mixcloud-container"><iframe id="mixcloud-iframe" src="" allow="autoplay"></iframe></div>
+      </div>
+      <div class="flyer-form-wrap">
+        <div style="flex-shrink:0;"><img src="flyer.png" alt="DJ Nyla Flyer" style="max-width:320px;width:100%;border-radius:12px;border:1px solid rgba(255,45,122,0.2);"></div>
+        <div class="birthday-card">
+          <div style="font-family:'Orbitron',monospace;font-size:0.55rem;letter-spacing:0.35em;color:var(--pink);text-transform:uppercase;margin-bottom:8px;">◈ Geburtstags-Set</div>
+          <h3 style="font-family:'Orbitron',monospace;font-size:1.1rem;font-weight:700;color:var(--text);margin-bottom:8px;">Dein persönliches Set</h3>
+          <p style="font-size:0.9rem;color:var(--muted);line-height:1.6;margin-bottom:24px;">Ich spiele dir an deinem Geburtstag ein persönliches Set! Melde dich einfach über das Formular an und ich kümmere mich um den Rest.</p>
+          <a href="https://forms.gle/7RCrqi4CvYhvk76d8" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,45,122,0.1);border:1px solid rgba(255,45,122,0.4);color:var(--pink);font-family:'Rajdhani',sans-serif;font-size:1rem;font-weight:600;padding:12px 24px;border-radius:8px;text-decoration:none;letter-spacing:0.05em;">▶ Jetzt anmelden</a>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- STREAMS -->
+<div id="section-streams" style="display:none;">
+  <div id="streamtab-live">
+    <div class="stream-cards">
+      <div class="stream-card stream-card-musik">
+        <div class="stream-card-top"></div>
+        <div class="stream-card-header">
+          <div><div class="stream-card-label">◈ Musik Channel</div><div class="stream-card-name">dj_nyla</div></div>
+          <span id="musik-status" class="status-badge">● Offline</span>
+        </div>
+        <div class="stream-preview stream-preview-bg-musik" style="position:relative;">
+          <div id="musik-offline" style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;position:absolute;inset:0;">
+            <div id="musik-status-text" style="font-family:'Orbitron',monospace;font-size:0.6rem;letter-spacing:0.3em;color:var(--muted);text-transform:uppercase;">Currently Offline</div>
+          </div>
+          <iframe id="musik-embed" src="" style="display:none;width:100%;height:100%;border:none;" allowfullscreen></iframe>
+        </div>
+        <div class="stream-footer"><a href="https://www.twitch.tv/dj_nyla" target="_blank" class="stream-link stream-link-musik">▶ Auf Twitch ansehen</a></div>
+      </div>
+    </div>
+    <div style="padding:32px 40px 40px;">
+      <div class="info-box">
+        <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,rgba(88,101,242,0.6),transparent);"></div>
+        <div style="font-family:'Orbitron',monospace;font-size:0.6rem;letter-spacing:0.3em;color:rgba(88,101,242,0.8);text-transform:uppercase;margin-bottom:16px;">◈ Stream-Infos & Updates</div>
+        <p style="font-size:0.95rem;color:var(--muted);line-height:1.7;margin-bottom:24px;">Wenn du keine Stream-Infos verpassen möchtest, tritt unserem Discord bei – dort werden alle Updates und Ankündigungen gepostet.</p>
+        <a href="https://discord.gg/bCM5s7dnZ2" target="_blank" style="display:inline-flex;align-items:center;gap:10px;background:rgba(88,101,242,0.12);border:1px solid rgba(88,101,242,0.4);color:#8b9cf4;font-family:'Rajdhani',sans-serif;font-size:1rem;font-weight:600;padding:11px 28px;border-radius:8px;text-decoration:none;letter-spacing:0.06em;">◈ Discord beitreten</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- VRCHAT -->
+<div id="section-vrchat" style="display:none;padding:40px;">
+  <div class="home-section-label" style="margin-bottom:24px;">◈ VRChat</div>
+  <div class="vrchat-card">
+    <h2 style="font-family:'Orbitron',monospace;font-size:1.4rem;font-weight:700;color:var(--text);margin-bottom:12px;">Dream Café</h2>
+    <p style="font-size:0.95rem;color:var(--muted);line-height:1.75;margin-bottom:16px;">Ein etwas anderes Café in VRChat. Dunkel, gemütlich, mit Graffiti an den Wänden, einer Bar und einem DJ-Bereich. Café, Cocktails und kalte Drinks gibt's an der Bar – RP ist willkommen. Ein Treffpunkt für Freunde, der sich nach mehr anfühlt.</p>
+    <a href="https://vrchat.com/home/launch?worldId=wrld_ad236d17-a734-4570-9661-bc1174b0c2d3" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,45,122,0.08);border:1px solid rgba(255,45,122,0.3);color:var(--pink);font-family:'Rajdhani',sans-serif;font-size:0.9rem;font-weight:600;padding:10px 20px;border-radius:8px;text-decoration:none;letter-spacing:0.05em;">▶ In VRChat öffnen</a>
+  </div>
+</div>
+
+<!-- ÜBER NYLA -->
+<div id="section-about" style="display:none;">
+  <div class="about-hero">
+    <div class="about-img-panel"><img src="about.png" alt="DJ Nyla"></div>
+    <div class="about-content">
+      <div class="about-bio-block">
+        <p>Hey, ich bin <strong>Nyla</strong> – DJ, Gamerin und irgendwie immer irgendwo online. Gaming begleitet mich schon seit meiner Kindheit – und irgendwann hat sich daraus die Liebe zur Musik entwickelt.</p>
+        <p>Als DJ treibe ich mich regelmäßig auf virtuellen Dancefloors herum – ob beim <span class="hl-pink">Tuesday Tunes</span>, bei der <span class="hl-pink">Naughty Mischiefnight</span> oder einfach dann, wenn die Vibes es verlangen. Spontane Sets passieren. Einfach so.</p>
+        <p>Wenn ich nicht hinter den Decks stehe, bin ich in VRChat, baue am Setup oder trinke zu viel Kaffee. Typisch.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>DJ Nyla · Dark Beats. Dirty Vibes. · <a href="index.html" style="color:var(--muted);text-decoration:none;">← Zurück zur Startseite</a></footer>
+
+<script>
+  function showSection(id,btn){
+    ['home','musik','streams','vrchat','about'].forEach(s=>document.getElementById('section-'+s).style.display='none');
+    document.getElementById('section-'+id).style.display='block';
+    document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+    if(btn&&btn.classList.contains('nav-btn'))btn.classList.add('active');
+    if(id==='streams')checkStreamStatus();
+  }
+  function toggleCat(id,btn){
+    const list=document.getElementById('cat-'+id);
+    const isOpen=list.classList.contains('open');
+    document.querySelectorAll('.set-list').forEach(l=>l.classList.remove('open'));
+    document.querySelectorAll('.category-btn').forEach(b=>b.classList.remove('open'));
+    if(!isOpen){list.classList.add('open');btn.classList.add('open');}
+  }
+  function showStreamTab(tab,btn){
+    document.getElementById('streamtab-live').style.display=tab==='live'?'block':'none';
+    document.getElementById('streamtab-clips').style.display=tab==='clips'?'block':'none';
+    document.querySelectorAll('.stream-tab').forEach(b=>{b.style.background='rgba(85,96,128,0.1)';b.style.borderColor='rgba(85,96,128,0.2)';b.style.color='var(--muted)';});
+    const activeTab=document.getElementById('tab-'+tab);
+    if(activeTab){activeTab.style.background='rgba(255,45,122,0.1)';activeTab.style.borderColor='rgba(255,45,122,0.3)';activeTab.style.color='var(--pink)';}
+    if(tab==='clips')loadClips();
+  }
+  async function checkStreamStatus(){
+    try{
+      const res=await fetch('https://lighthearted-starship-97edf3.netlify.app/.netlify/functions/clips?type=status',{method:'GET'});
+      const data=await res.json();
+      updateStreamCard('gaming',data.gaming);
+      updateStreamCard('musik',data.musik);
+    }catch(e){}
+  }
+  function updateStreamCard(key,streamData){
+    const statusEl=document.getElementById(key+'-status');
+    const statusTextEl=document.getElementById(key+'-status-text');
+    if(streamData){
+      statusEl.textContent='● Online';statusEl.style.background='rgba(0,200,80,0.15)';statusEl.style.borderColor='rgba(0,200,80,0.4)';statusEl.style.color='#00c850';
+      if(statusTextEl){statusTextEl.textContent='Currently Online';statusTextEl.style.color='#00c850';}
+    }else{
+      statusEl.textContent='● Offline';statusEl.style.background='rgba(85,96,128,0.2)';statusEl.style.borderColor='rgba(85,96,128,0.3)';statusEl.style.color='var(--muted)';
+      if(statusTextEl){statusTextEl.textContent='Currently Offline';statusTextEl.style.color='var(--muted)';}
+    }
+  }
+  async function loadClips(){
+    const grid=document.getElementById('clips-grid');
+    try{
+      const res=await fetch('https://lighthearted-starship-97edf3.netlify.app/.netlify/functions/clips');
+      const data=await res.json();
+      grid.innerHTML='';
+      const sorted=data.data.sort((a,b)=>new Date(b.created_at)-new Date(a.created_at));
+      sorted.forEach(clip=>{
+        const card=document.createElement('div');
+        card.style.cssText='background:rgba(15,10,12,0.95);border:1px solid rgba(255,45,122,0.1);border-radius:12px;overflow:hidden;cursor:pointer;transition:border-color 0.2s;';
+        card.onmouseover=()=>card.style.borderColor='rgba(255,45,122,0.35)';
+        card.onmouseout=()=>card.style.borderColor='rgba(255,45,122,0.1)';
+        card.innerHTML=`<div style="position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;background:#000;"><img src="${clip.thumbnail_url}" style="width:100%;height:100%;object-fit:cover;display:block;opacity:0.85;"><div style="position:absolute;bottom:6px;right:8px;font-family:'Orbitron',monospace;font-size:0.5rem;letter-spacing:0.1em;color:rgba(255,255,255,0.7);background:rgba(0,0,0,0.6);padding:2px 7px;border-radius:8px;">${Math.floor(clip.duration)}s</div></div><div style="padding:12px 14px;"><div style="font-size:0.9rem;font-weight:600;color:var(--text);margin-bottom:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${clip.title}</div><div style="font-family:'Orbitron',monospace;font-size:0.5rem;letter-spacing:0.15em;color:var(--muted);">${clip.view_count} Views · ${new Date(clip.created_at).toLocaleDateString('de-DE')}</div></div>`;
+        card.onclick=()=>window.open(clip.url,'_blank');
+        grid.appendChild(card);
+      });
+    }catch(e){grid.innerHTML='<div style="color:var(--muted);">Clips konnten nicht geladen werden.</div>';}
+  }
+  let currentItem=null;
+  function loadMixcloud(el,category,iframeSrc){
+    if(currentItem)currentItem.classList.remove('playing');
+    currentItem=el;el.classList.add('playing');
+    document.getElementById('np-title').textContent=el.textContent.trim();
+    document.getElementById('np-cat').textContent='📂 '+category;
+    document.getElementById('mixcloud-iframe').src=iframeSrc;
+    document.getElementById('mixcloud-container').style.display='block';
+  }
+</script>
+</body>
+</html>
