@@ -6,9 +6,10 @@
   <title>einfach_nyla – Just Play. Be Cozy.</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet" />
   <style>
-    :root { --bg:#080808; --blue:#4d9fff; --blue-dark:#003580; --text:#f0f0f0; --muted:#666; }
+    :root { --bg:#080808; --blue:#4d9fff; --text:#f0f0f0; --muted:#666; }
     * { margin:0; padding:0; box-sizing:border-box; }
     body { font-family:'Rajdhani',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; }
+
     header { display:flex; align-items:center; padding:16px 32px; background:rgba(8,8,8,0.95); border-bottom:1px solid rgba(0,100,255,0.12); position:sticky; top:0; z-index:100; gap:16px; backdrop-filter:blur(10px); }
     .back-btn { display:flex; align-items:center; gap:6px; font-family:'Orbitron',monospace; font-size:0.55rem; letter-spacing:0.2em; color:var(--muted); text-decoration:none; padding:6px 12px; border:1px solid rgba(255,255,255,0.1); border-radius:6px; transition:all 0.2s; }
     .back-btn:hover { color:var(--blue); border-color:rgba(0,100,255,0.3); }
@@ -16,8 +17,21 @@
     .header-brand img { height:36px; width:36px; object-fit:contain; filter:drop-shadow(0 0 6px rgba(0,100,255,0.4)); }
     h1 { font-family:'Orbitron',monospace; font-size:1.1rem; font-weight:900; color:#4d9fff; letter-spacing:0.05em; }
     .subtitle { font-size:0.75rem; color:var(--muted); letter-spacing:0.15em; }
-    .twitch-btn { margin-left:auto; display:inline-flex; align-items:center; gap:8px; background:rgba(0,100,255,0.12); border:1px solid rgba(0,100,255,0.3); color:var(--blue); font-family:'Rajdhani',sans-serif; font-size:0.9rem; font-weight:600; padding:8px 18px; border-radius:8px; text-decoration:none; letter-spacing:0.05em; transition:all 0.2s; }
-    .twitch-btn:hover { background:rgba(0,100,255,0.25); box-shadow:0 0 16px rgba(0,100,255,0.2); }
+    .nav-btn { background:none; border:1px solid rgba(0,100,255,0.2); color:var(--muted); font-family:'Rajdhani',sans-serif; font-size:0.9rem; font-weight:600; padding:6px 16px; border-radius:6px; cursor:pointer; transition:all 0.2s; letter-spacing:0.05em; }
+    .nav-btn:hover { color:var(--blue); border-color:var(--blue); }
+    .nav-btn.active { color:var(--blue); border-color:var(--blue); background:rgba(0,100,255,0.08); }
+    .nav-dropdown { position:relative; }
+    .nav-dropdown-menu { display:none; position:absolute; top:calc(100% + 4px); left:50%; transform:translateX(-50%); background:rgba(8,8,15,0.98); border:1px solid rgba(0,100,255,0.2); border-radius:8px; overflow:hidden; min-width:120px; z-index:100; box-shadow:0 8px 32px rgba(0,0,0,0.4); }
+    .nav-dropdown::after { content:''; position:absolute; top:100%; left:0; right:0; height:12px; }
+    .nav-dropdown:hover .nav-dropdown-menu { display:block; }
+    .nav-dropdown-item { display:block; width:100%; padding:10px 18px; background:none; border:none; color:var(--muted); font-family:'Rajdhani',sans-serif; font-size:0.9rem; font-weight:600; cursor:pointer; text-align:left; transition:all 0.15s; white-space:nowrap; }
+    .nav-dropdown-item:hover { color:var(--blue); background:rgba(0,100,255,0.06); }
+    .twitch-link { display:inline-flex; align-items:center; gap:8px; background:rgba(0,100,255,0.12); border:1px solid rgba(0,100,255,0.3); color:var(--blue); font-family:'Rajdhani',sans-serif; font-size:0.9rem; font-weight:600; padding:8px 18px; border-radius:8px; text-decoration:none; letter-spacing:0.05em; transition:all 0.2s; }
+    .twitch-link:hover { background:rgba(0,100,255,0.25); }
+
+    /* SECTIONS */
+    #section-home, #section-streams { display:none; }
+    #section-home { display:block; }
 
     /* HERO */
     .hero { position:relative; min-height:300px; display:flex; align-items:center; justify-content:center; overflow:hidden; background:radial-gradient(ellipse at 50% 0%, rgba(0,80,255,0.15) 0%, transparent 70%); }
@@ -27,7 +41,6 @@
     .scan-lines { position:absolute; inset:0; background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(255,255,255,0.008) 3px,rgba(255,255,255,0.008) 4px); pointer-events:none; }
 
     /* STREAM STATUS */
-    .stream-section { padding:40px; }
     .section-label { font-family:'Orbitron',monospace; font-size:0.55rem; letter-spacing:0.3em; color:var(--muted); text-transform:uppercase; margin-bottom:20px; }
     .stream-card { background:rgba(15,15,20,0.95); border:1px solid rgba(0,100,255,0.2); border-radius:16px; overflow:hidden; max-width:600px; position:relative; }
     .stream-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,#4d9fff,transparent); }
@@ -36,19 +49,16 @@
     .stream-name { font-family:'Orbitron',monospace; font-size:0.95rem; font-weight:700; color:var(--text); }
     .status-badge { font-family:'Orbitron',monospace; font-size:0.5rem; letter-spacing:0.2em; padding:4px 10px; border-radius:20px; background:rgba(85,96,128,0.2); border:1px solid rgba(85,96,128,0.3); color:var(--muted); text-transform:uppercase; }
     .stream-preview { width:100%; aspect-ratio:16/9; background:linear-gradient(135deg,rgba(0,100,255,0.06),rgba(8,8,8,0.95)); display:flex; align-items:center; justify-content:center; position:relative; }
-    .stream-preview-text { font-family:'Orbitron',monospace; font-size:0.6rem; letter-spacing:0.3em; color:var(--muted); text-transform:uppercase; position:relative; z-index:1; }
+    .stream-preview-text { font-family:'Orbitron',monospace; font-size:0.6rem; letter-spacing:0.3em; color:var(--muted); text-transform:uppercase; }
     .stream-footer { padding:16px 24px; }
     .stream-link { display:inline-flex; align-items:center; gap:8px; background:rgba(0,100,255,0.1); border:1px solid rgba(0,100,255,0.35); color:var(--blue); font-family:'Rajdhani',sans-serif; font-size:0.9rem; font-weight:600; padding:8px 18px; border-radius:8px; text-decoration:none; letter-spacing:0.05em; transition:all 0.2s; }
     .stream-link:hover { background:rgba(0,100,255,0.2); }
-
-    /* INFO */
-    .info-section { padding:0 40px 40px; }
     .info-card { background:rgba(15,15,20,0.95); border:1px solid rgba(0,100,255,0.12); border-radius:16px; padding:28px 32px; max-width:600px; }
-    .info-text { font-size:0.95rem; color:var(--muted); line-height:1.7; }
-
-    /* DISCORD */
-    .discord-box { max-width:480px; margin:0 40px 40px; background:rgba(15,15,20,0.95); border:1px solid rgba(88,101,242,0.2); border-radius:16px; padding:28px 32px; text-align:center; position:relative; overflow:hidden; }
+    .discord-box { max-width:480px; background:rgba(15,15,20,0.95); border:1px solid rgba(88,101,242,0.2); border-radius:16px; padding:28px 32px; text-align:center; position:relative; overflow:hidden; }
     .discord-box::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,transparent,rgba(88,101,242,0.6),transparent); }
+
+    /* STREAM TAB */
+    .stream-tab { font-family:'Orbitron',monospace; font-size:0.6rem; letter-spacing:0.2em; padding:8px 20px; border-radius:8px; cursor:pointer; transition:all 0.2s; border:1px solid; }
 
     footer { text-align:center; padding:24px; font-family:'Orbitron',monospace; font-size:0.5rem; letter-spacing:0.3em; color:rgba(255,255,255,0.1); border-top:1px solid rgba(0,100,255,0.08); }
   </style>
@@ -65,74 +75,107 @@
     </div>
   </div>
   <nav style="margin-left:auto; display:flex; gap:8px; align-items:center;">
-    <button id="gnav-home" onclick="showGSection('home',this)" style="background:rgba(0,100,255,0.12);border:1px solid rgba(0,100,255,0.35);color:#4d9fff;font-family:'Rajdhani',sans-serif;font-size:0.9rem;font-weight:600;padding:6px 16px;border-radius:6px;cursor:pointer;letter-spacing:0.05em;">Home</button>
-    <a href="https://www.twitch.tv/einfach_nyla" target="_blank" class="twitch-btn">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714z"/></svg>
-      Auf Twitch
+    <button class="nav-btn active" onclick="showGSection('home',this)">Home</button>
+    <div class="nav-dropdown">
+      <button class="nav-btn" id="gnav-streams" onclick="showGSection('streams',this); showStreamTab('live')">Streams</button>
+      <div class="nav-dropdown-menu">
+        <button class="nav-dropdown-item" onclick="showGSection('streams',document.getElementById('gnav-streams')); showStreamTab('clips')">Clips</button>
+      </div>
+    </div>
+    <a href="https://www.twitch.tv/einfach_nyla" target="_blank" class="twitch-link">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714z"/></svg>
+      Twitch
     </a>
   </nav>
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714z"/></svg>
-    Auf Twitch
-  </a>
 </header>
 
-<!-- HERO -->
-<div class="hero">
-  <div class="scan-lines"></div>
-  <div class="hero-content">
-    <div class="hero-title">GAMING</div>
-    <div class="hero-sub">Just Play. Be Cozy.</div>
-    <a href="https://www.twitch.tv/einfach_nyla" target="_blank" style="display:inline-flex;align-items:center;gap:10px;background:rgba(0,100,255,0.12);border:1px solid rgba(0,100,255,0.35);color:#4d9fff;font-family:'Orbitron',monospace;font-size:0.7rem;letter-spacing:0.25em;text-transform:uppercase;padding:14px 32px;border-radius:6px;text-decoration:none;transition:all 0.2s;">▶ Twitch öffnen</a>
+<!-- HOME -->
+<div id="section-home">
+  <div class="hero">
+    <div class="scan-lines"></div>
+    <div class="hero-content">
+      <div class="hero-title">GAMING</div>
+      <div class="hero-sub">Just Play. Be Cozy.</div>
+      <a href="https://www.twitch.tv/einfach_nyla" target="_blank" style="display:inline-flex;align-items:center;gap:10px;background:rgba(0,100,255,0.12);border:1px solid rgba(0,100,255,0.35);color:#4d9fff;font-family:'Orbitron',monospace;font-size:0.7rem;letter-spacing:0.25em;text-transform:uppercase;padding:14px 32px;border-radius:6px;text-decoration:none;">▶ Twitch öffnen</a>
+    </div>
+  </div>
+
+  <div style="padding:40px;">
+    <div class="section-label">◈ Gaming</div>
+    <div class="info-card" style="margin-bottom:32px;">
+      <p style="font-size:0.95rem;color:var(--muted);line-height:1.7;">Gaming ist und bleibt ein großer Teil von mir. Wenn ich Lust auf ein Spiel habe, wird spontan gestreamt – kein fester Plan, einfach wenn die Vibes stimmen.</p>
+    </div>
+
+    <div class="discord-box">
+      <div style="font-family:'Orbitron',monospace;font-size:0.6rem;letter-spacing:0.3em;color:rgba(88,101,242,0.8);text-transform:uppercase;margin-bottom:16px;">◈ Stream-Infos</div>
+      <p style="font-size:0.95rem;color:var(--muted);line-height:1.7;margin-bottom:24px;">Wenn du keine Stream-Infos verpassen möchtest, tritt dem Discord bei – dort werden alle Updates gepostet.</p>
+      <a href="https://discord.gg/bCM5s7dnZ2" target="_blank" style="display:inline-flex;align-items:center;gap:10px;background:rgba(88,101,242,0.12);border:1px solid rgba(88,101,242,0.4);color:#8b9cf4;font-family:'Rajdhani',sans-serif;font-size:1rem;font-weight:600;padding:11px 28px;border-radius:8px;text-decoration:none;letter-spacing:0.06em;">◈ Discord beitreten</a>
+    </div>
   </div>
 </div>
 
-<!-- STREAM STATUS -->
-<div class="stream-section">
-  <div class="section-label">◈ Live Status</div>
-  <div class="stream-card">
-    <div class="stream-header">
-      <div>
-        <div class="stream-label">◈ Gaming Channel</div>
-        <div class="stream-name">einfach_nyla</div>
+<!-- STREAMS -->
+<div id="section-streams" style="display:none;">
+  <div style="display:flex;gap:12px;padding:28px 40px 0;">
+    <button class="stream-tab" id="tab-live" onclick="showStreamTab('live')" style="background:rgba(0,100,255,0.1);border-color:rgba(0,100,255,0.3);color:var(--blue);">◈ LIVE</button>
+    <button class="stream-tab" id="tab-clips" onclick="showStreamTab('clips')" style="background:rgba(85,96,128,0.1);border-color:rgba(85,96,128,0.2);color:var(--muted);">◈ CLIPS</button>
+  </div>
+
+  <!-- LIVE -->
+  <div id="streamtab-live" style="padding:28px 40px 40px;">
+    <div class="section-label">◈ Live Status</div>
+    <div class="stream-card">
+      <div class="stream-header">
+        <div>
+          <div class="stream-label">◈ Gaming Channel</div>
+          <div class="stream-name">einfach_nyla</div>
+        </div>
+        <span id="gaming-status" class="status-badge">● Offline</span>
       </div>
-      <span id="gaming-status" class="status-badge">● Offline</span>
-    </div>
-    <div class="stream-preview">
-      <div id="gaming-offline" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
-        <div id="gaming-status-text" class="stream-preview-text">Currently Offline</div>
+      <div class="stream-preview">
+        <div id="gaming-offline" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+          <div id="gaming-status-text" class="stream-preview-text">Currently Offline</div>
+        </div>
+        <iframe id="gaming-embed" src="" style="display:none;width:100%;height:100%;border:none;" allowfullscreen></iframe>
       </div>
-      <iframe id="gaming-embed" src="" style="display:none;width:100%;height:100%;border:none;" allowfullscreen></iframe>
-    </div>
-    <div class="stream-footer">
-      <a href="https://www.twitch.tv/einfach_nyla" target="_blank" class="stream-link">▶ Auf Twitch ansehen</a>
+      <div class="stream-footer">
+        <a href="https://www.twitch.tv/einfach_nyla" target="_blank" class="stream-link">▶ Auf Twitch ansehen</a>
+      </div>
     </div>
   </div>
-</div>
 
-<!-- INFO -->
-<div class="info-section">
-  <div class="section-label">◈ Gaming</div>
-  <div class="info-card">
-    <p class="info-text">Gaming ist und bleibt ein großer Teil von mir. Wenn ich Lust auf ein Spiel habe, wird spontan gestreamt – kein fester Plan, einfach wenn die Vibes stimmen.</p>
+  <!-- CLIPS -->
+  <div id="streamtab-clips" style="display:none;padding:28px 40px 40px;">
+    <div class="section-label">◈ Clips · einfach_nyla</div>
+    <div id="clips-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px;">
+      <div style="color:var(--muted);font-size:0.9rem;">Clips werden geladen...</div>
+    </div>
   </div>
-</div>
-
-<!-- DISCORD -->
-<div class="discord-box">
-  <div style="font-family:'Orbitron',monospace;font-size:0.6rem;letter-spacing:0.3em;color:rgba(88,101,242,0.8);text-transform:uppercase;margin-bottom:16px;">◈ Stream-Infos</div>
-  <p style="font-size:0.95rem;color:var(--muted);line-height:1.7;margin-bottom:24px;">Wenn du keine Stream-Infos verpassen möchtest, tritt dem Discord bei – dort werden alle Updates gepostet.</p>
-  <a href="https://discord.gg/bCM5s7dnZ2" target="_blank" style="display:inline-flex;align-items:center;gap:10px;background:rgba(88,101,242,0.12);border:1px solid rgba(88,101,242,0.4);color:#8b9cf4;font-family:'Rajdhani',sans-serif;font-size:1rem;font-weight:600;padding:11px 28px;border-radius:8px;text-decoration:none;letter-spacing:0.06em;">◈ Discord beitreten</a>
-</div>
-
-<!-- CLIPS -->
-<div class="stream-section" style="padding-top:0;">
-  <div class="section-label">◈ Clips</div>
-  <div id="clips-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px;"><div style="color:var(--muted);font-size:0.9rem;">Clips werden geladen...</div></div>
 </div>
 
 <footer>einfach_nyla · Just Play. Be Cozy. · <a href="index.html" style="color:var(--muted);text-decoration:none;">← Zurück zur Startseite</a></footer>
 
 <script>
+  function showGSection(id, btn) {
+    document.getElementById('section-home').style.display = id === 'home' ? 'block' : 'none';
+    document.getElementById('section-streams').style.display = id === 'streams' ? 'block' : 'none';
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    if (btn && btn.classList.contains('nav-btn')) btn.classList.add('active');
+    if (id === 'streams') checkStreamStatus();
+  }
+
+  function showStreamTab(tab) {
+    document.getElementById('streamtab-live').style.display = tab === 'live' ? 'block' : 'none';
+    document.getElementById('streamtab-clips').style.display = tab === 'clips' ? 'block' : 'none';
+    document.getElementById('tab-live').style.background = tab === 'live' ? 'rgba(0,100,255,0.1)' : 'rgba(85,96,128,0.1)';
+    document.getElementById('tab-live').style.borderColor = tab === 'live' ? 'rgba(0,100,255,0.3)' : 'rgba(85,96,128,0.2)';
+    document.getElementById('tab-live').style.color = tab === 'live' ? 'var(--blue)' : 'var(--muted)';
+    document.getElementById('tab-clips').style.background = tab === 'clips' ? 'rgba(0,100,255,0.1)' : 'rgba(85,96,128,0.1)';
+    document.getElementById('tab-clips').style.borderColor = tab === 'clips' ? 'rgba(0,100,255,0.3)' : 'rgba(85,96,128,0.2)';
+    document.getElementById('tab-clips').style.color = tab === 'clips' ? 'var(--blue)' : 'var(--muted)';
+    if (tab === 'clips') loadClips();
+  }
+
   async function checkStreamStatus() {
     try {
       const res = await fetch('https://lighthearted-starship-97edf3.netlify.app/.netlify/functions/clips?type=status');
@@ -148,7 +191,6 @@
       }
     } catch(e) {}
   }
-  checkStreamStatus();
 
   async function loadClips() {
     const grid = document.getElementById('clips-grid');
@@ -167,7 +209,6 @@
       });
     } catch(e) { grid.innerHTML = '<div style="color:var(--muted);">Clips konnten nicht geladen werden.</div>'; }
   }
-  loadClips();
 </script>
 </body>
 </html>
