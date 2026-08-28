@@ -9,7 +9,6 @@
     :root { --bg:#080808; --blue:#4d9fff; --text:#f0f0f0; --muted:#666; }
     * { margin:0; padding:0; box-sizing:border-box; }
     body { font-family:'Rajdhani',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; }
-
     header { display:flex; align-items:center; padding:16px 32px; background:rgba(8,8,8,0.95); border-bottom:1px solid rgba(0,100,255,0.12); position:sticky; top:0; z-index:100; gap:16px; backdrop-filter:blur(10px); }
     .back-btn { display:flex; align-items:center; gap:6px; font-family:'Orbitron',monospace; font-size:0.55rem; letter-spacing:0.2em; color:var(--muted); text-decoration:none; padding:6px 12px; border:1px solid rgba(255,255,255,0.1); border-radius:6px; transition:all 0.2s; }
     .back-btn:hover { color:var(--blue); border-color:rgba(0,100,255,0.3); }
@@ -28,19 +27,13 @@
     .nav-dropdown-item:hover { color:var(--blue); background:rgba(0,100,255,0.06); }
     .twitch-link { display:inline-flex; align-items:center; gap:8px; background:rgba(0,100,255,0.12); border:1px solid rgba(0,100,255,0.3); color:var(--blue); font-family:'Rajdhani',sans-serif; font-size:0.9rem; font-weight:600; padding:8px 18px; border-radius:8px; text-decoration:none; letter-spacing:0.05em; transition:all 0.2s; }
     .twitch-link:hover { background:rgba(0,100,255,0.25); }
-
-    /* SECTIONS */
     #section-home, #section-streams { display:none; }
     #section-home { display:block; }
-
-    /* HERO */
     .hero { position:relative; min-height:300px; display:flex; align-items:center; justify-content:center; overflow:hidden; background:radial-gradient(ellipse at 50% 0%, rgba(0,80,255,0.15) 0%, transparent 70%); }
     .hero-content { text-align:center; position:relative; z-index:1; padding:60px 40px; }
     .hero-title { font-family:'Orbitron',monospace; font-size:clamp(2rem,6vw,4rem); font-weight:900; color:#fff; text-shadow:0 0 40px rgba(0,100,255,0.6); letter-spacing:0.05em; margin-bottom:8px; }
     .hero-sub { font-size:1.1rem; color:rgba(255,255,255,0.4); letter-spacing:0.15em; margin-bottom:32px; }
     .scan-lines { position:absolute; inset:0; background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(255,255,255,0.008) 3px,rgba(255,255,255,0.008) 4px); pointer-events:none; }
-
-    /* STREAM STATUS */
     .section-label { font-family:'Orbitron',monospace; font-size:0.55rem; letter-spacing:0.3em; color:var(--muted); text-transform:uppercase; margin-bottom:20px; }
     .stream-card { background:rgba(15,15,20,0.95); border:1px solid rgba(0,100,255,0.2); border-radius:16px; overflow:hidden; max-width:600px; position:relative; }
     .stream-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,#4d9fff,transparent); }
@@ -56,10 +49,7 @@
     .info-card { background:rgba(15,15,20,0.95); border:1px solid rgba(0,100,255,0.12); border-radius:16px; padding:28px 32px; max-width:600px; }
     .discord-box { max-width:480px; background:rgba(15,15,20,0.95); border:1px solid rgba(88,101,242,0.2); border-radius:16px; padding:28px 32px; text-align:center; position:relative; overflow:hidden; }
     .discord-box::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,transparent,rgba(88,101,242,0.6),transparent); }
-
-    /* STREAM TAB */
     .stream-tab { font-family:'Orbitron',monospace; font-size:0.6rem; letter-spacing:0.2em; padding:8px 20px; border-radius:8px; cursor:pointer; transition:all 0.2s; border:1px solid; }
-
     footer { text-align:center; padding:24px; font-family:'Orbitron',monospace; font-size:0.5rem; letter-spacing:0.3em; color:rgba(255,255,255,0.1); border-top:1px solid rgba(0,100,255,0.08); }
   </style>
 </head>
@@ -89,7 +79,6 @@
   </nav>
 </header>
 
-<!-- HOME -->
 <div id="section-home">
   <div class="hero">
     <div class="scan-lines"></div>
@@ -99,23 +88,19 @@
       <a href="https://www.twitch.tv/einfach_nyla" target="_blank" style="display:inline-flex;align-items:center;gap:10px;background:rgba(0,100,255,0.12);border:1px solid rgba(0,100,255,0.35);color:#4d9fff;font-family:'Orbitron',monospace;font-size:0.7rem;letter-spacing:0.25em;text-transform:uppercase;padding:14px 32px;border-radius:6px;text-decoration:none;">▶ Twitch öffnen</a>
     </div>
   </div>
-
   <div style="padding:40px;">
     <div class="section-label">◈ Gaming</div>
-    <div class="info-card" style="margin-bottom:32px;">
+    <div class="info-card">
       <p style="font-size:0.95rem;color:var(--muted);line-height:1.7;">Gaming ist und bleibt ein großer Teil von mir. Wenn ich Lust auf ein Spiel habe, wird spontan gestreamt – kein fester Plan, einfach wenn die Vibes stimmen.</p>
     </div>
   </div>
 </div>
 
-<!-- STREAMS -->
 <div id="section-streams" style="display:none;">
   <div style="display:flex;gap:12px;padding:28px 40px 0;">
     <button class="stream-tab" id="tab-live" onclick="showStreamTab('live')" style="background:rgba(0,100,255,0.1);border-color:rgba(0,100,255,0.3);color:var(--blue);">◈ LIVE</button>
     <button class="stream-tab" id="tab-clips" onclick="showStreamTab('clips')" style="background:rgba(85,96,128,0.1);border-color:rgba(85,96,128,0.2);color:var(--muted);">◈ CLIPS</button>
   </div>
-
-  <!-- LIVE -->
   <div id="streamtab-live" style="padding:28px 40px 40px;">
     <div class="section-label">◈ Live Status</div>
     <div class="stream-card" style="margin-bottom:32px;">
@@ -136,15 +121,14 @@
         <a href="https://www.twitch.tv/einfach_nyla" target="_blank" class="stream-link">▶ Auf Twitch ansehen</a>
       </div>
     </div>
-
-    <div class="discord-box">
-      <div style="font-family:'Orbitron',monospace;font-size:0.6rem;letter-spacing:0.3em;color:rgba(88,101,242,0.8);text-transform:uppercase;margin-bottom:16px;">◈ Stream-Infos & Updates</div>
-      <p style="font-size:0.95rem;color:var(--muted);line-height:1.7;margin-bottom:24px;">Wenn du keine Stream-Infos verpassen möchtest, tritt dem Discord bei – dort werden alle Updates und Ankündigungen gepostet.</p>
-      <a href="https://discord.gg/bCM5s7dnZ2" target="_blank" style="display:inline-flex;align-items:center;gap:10px;background:rgba(88,101,242,0.12);border:1px solid rgba(88,101,242,0.4);color:#8b9cf4;font-family:'Rajdhani',sans-serif;font-size:1rem;font-weight:600;padding:11px 28px;border-radius:8px;text-decoration:none;letter-spacing:0.06em;">◈ Discord beitreten</a>
+    <div style="display:flex;justify-content:center;">
+      <div class="discord-box">
+        <div style="font-family:'Orbitron',monospace;font-size:0.6rem;letter-spacing:0.3em;color:rgba(88,101,242,0.8);text-transform:uppercase;margin-bottom:16px;">◈ Stream-Infos & Updates</div>
+        <p style="font-size:0.95rem;color:var(--muted);line-height:1.7;margin-bottom:24px;">Wenn du keine Stream-Infos verpassen möchtest, tritt dem Discord bei – dort werden alle Updates und Ankündigungen gepostet.</p>
+        <a href="https://discord.gg/bCM5s7dnZ2" target="_blank" style="display:inline-flex;align-items:center;gap:10px;background:rgba(88,101,242,0.12);border:1px solid rgba(88,101,242,0.4);color:#8b9cf4;font-family:'Rajdhani',sans-serif;font-size:1rem;font-weight:600;padding:11px 28px;border-radius:8px;text-decoration:none;letter-spacing:0.06em;">◈ Discord beitreten</a>
+      </div>
     </div>
   </div>
-
-  <!-- CLIPS -->
   <div id="streamtab-clips" style="display:none;padding:28px 40px 40px;">
     <div class="section-label">◈ Clips · einfach_nyla</div>
     <div id="clips-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px;">
@@ -163,7 +147,6 @@
     if (btn && btn.classList.contains('nav-btn')) btn.classList.add('active');
     if (id === 'streams') checkStreamStatus();
   }
-
   function showStreamTab(tab) {
     document.getElementById('streamtab-live').style.display = tab === 'live' ? 'block' : 'none';
     document.getElementById('streamtab-clips').style.display = tab === 'clips' ? 'block' : 'none';
@@ -175,7 +158,6 @@
     document.getElementById('tab-clips').style.color = tab === 'clips' ? 'var(--blue)' : 'var(--muted)';
     if (tab === 'clips') loadClips();
   }
-
   async function checkStreamStatus() {
     try {
       const res = await fetch('https://lighthearted-starship-97edf3.netlify.app/.netlify/functions/clips?type=status');
@@ -191,7 +173,6 @@
       }
     } catch(e) {}
   }
-
   async function loadClips() {
     const grid = document.getElementById('clips-grid');
     try {
@@ -203,11 +184,38 @@
         card.style.cssText = 'background:rgba(15,15,20,0.95);border:1px solid rgba(0,100,255,0.1);border-radius:12px;overflow:hidden;cursor:pointer;transition:border-color 0.2s;';
         card.onmouseover = () => card.style.borderColor = 'rgba(0,100,255,0.35)';
         card.onmouseout = () => card.style.borderColor = 'rgba(0,100,255,0.1)';
-        card.innerHTML = `<div style="position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;background:#000;"><img src="${clip.thumbnail_url}" style="width:100%;height:100%;object-fit:cover;display:block;opacity:0.85;"><div style="position:absolute;bottom:6px;right:8px;font-family:'Orbitron',monospace;font-size:0.5rem;color:rgba(255,255,255,0.7);background:rgba(0,0,0,0.6);padding:2px 7px;border-radius:8px;">${Math.floor(clip.duration)}s</div></div><div style="padding:12px 14px;"><div style="font-size:0.9rem;font-weight:600;color:var(--text);margin-bottom:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${clip.title}</div><div style="font-family:'Orbitron',monospace;font-size:0.5rem;letter-spacing:0.15em;color:var(--muted);">${clip.view_count} Views · ${new Date(clip.created_at).toLocaleDateString('de-DE')}</div></div>`;
         card.onclick = () => window.open(clip.url, '_blank');
+        const imgWrap = document.createElement('div');
+        imgWrap.style.cssText = 'position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;background:#000;';
+        const img = document.createElement('img');
+        img.src = clip.thumbnail_url;
+        img.alt = clip.title;
+        img.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;opacity:0.85;';
+        const duration = document.createElement('div');
+        duration.style.cssText = 'position:absolute;bottom:6px;right:8px;font-family:Orbitron,monospace;font-size:0.5rem;color:rgba(255,255,255,0.7);background:rgba(0,0,0,0.6);padding:2px 7px;border-radius:8px;';
+        duration.textContent = Math.floor(clip.duration) + 's';
+        imgWrap.appendChild(img);
+        imgWrap.appendChild(duration);
+        const info = document.createElement('div');
+        info.style.cssText = 'padding:12px 14px;';
+        const title = document.createElement('div');
+        title.style.cssText = 'font-size:0.9rem;font-weight:600;color:var(--text);margin-bottom:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;';
+        title.textContent = clip.title;
+        const meta = document.createElement('div');
+        meta.style.cssText = 'font-family:Orbitron,monospace;font-size:0.5rem;letter-spacing:0.15em;color:var(--muted);';
+        meta.textContent = clip.view_count + ' Views · ' + new Date(clip.created_at).toLocaleDateString('de-DE');
+        info.appendChild(title);
+        info.appendChild(meta);
+        card.appendChild(imgWrap);
+        card.appendChild(info);
         grid.appendChild(card);
       });
-    } catch(e) { grid.innerHTML = '<div style="color:var(--muted);">Clips konnten nicht geladen werden.</div>'; }
+    } catch(e) {
+      const msg = document.createElement('div');
+      msg.style.color = 'var(--muted)';
+      msg.textContent = 'Clips konnten nicht geladen werden.';
+      grid.appendChild(msg);
+    }
   }
 </script>
 </body>
